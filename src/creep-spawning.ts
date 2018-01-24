@@ -1,10 +1,11 @@
 
+import { MAIN_SPAWN } from './constants';
+
 export class CreepSpawning {
-    private static readonly MAIN_SPAWN = 'Spawn1';
 
     public static execute(): void {
         if (Object.keys(Game.creeps).length < 5) {
-            Game.spawns[CreepSpawning.MAIN_SPAWN].spawnCreep(
+            Game.spawns[MAIN_SPAWN].spawnCreep(
                 [WORK, WORK, CARRY, MOVE],
                 `Harvester${CreepSpawning.creepIndex()}`,
                 { memory: { role: 'harvester' } }
