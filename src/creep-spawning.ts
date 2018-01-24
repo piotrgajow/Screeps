@@ -1,9 +1,14 @@
 
 export class CreepSpawning {
+    private static readonly MAIN_SPAWN = 'Spawn1';
 
-    static execute(): void {
+    public static execute(): void {
         if (Object.keys(Game.creeps).length < 5) {
-            Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], `Harvester${creepIndex()}`);
+            Game.spawns[CreepSpawning.MAIN_SPAWN].spawnCreep(
+                [WORK, WORK, CARRY, MOVE],
+                `Harvester${CreepSpawning.creepIndex()}`,
+                { memory: { role: 'harvester' } }
+            );
         }
     }
 
