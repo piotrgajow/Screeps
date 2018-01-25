@@ -1,6 +1,5 @@
 import { MAIN_SPAWN } from '../constants';
 
-import * as ExtractEnergy from '../extract-energy';
 import COMMON from '../common-data';
 
 const MEMORY = {
@@ -27,17 +26,7 @@ export class CreepRole {
         const role = this.creep.memory[MEMORY.ROLE];
         if (role === 'harvester') {
             const task = this.getTaskToExecute();
-            switch (task) {
-                case 'extract-energy':
-                    ExtractEnergy.execute(this.creep);
-                    break;
-                case 'fill-spawn':
-                case 'upgrade-controller':
-                    COMMON.TASKS[task].execute(this.creep);
-                    break;
-                default:
-                    console.log(`Behaviour for task ${task} is undefined`);
-            }
+            COMMON.TASKS[task].execute(this.creep);
         } else if (role) {
             console.error(`${this.creep.name} has unsupported role ${role}`);
         } else {

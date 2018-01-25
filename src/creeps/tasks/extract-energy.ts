@@ -1,23 +1,26 @@
+import { Task } from './task';
 
-import { MEMORY_TASK } from './constants';
+export class ExtractEnergy extends Task {
+
+    protected executeTask(creep:Creep):void {
+        let source = creep.room.find(FIND_SOURCES)[0];
+        if (source.energy === 0) {
+            source = creep.room.find(FIND_SOURCES)[1];
+        }
+        if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(source);
+        }
+    }
+
+    protected isTaskFinished(creep:Creep):boolean {
+        return creep.carry.energy === creep.carryCapacity
+    }
+}
 
 //export function initialize(creep: Creep): void {
 //    creep.memory[MEMORY_PATH] = findSourcePath(creep);
 //    execute(creep);
 //}
-
-export function execute(creep: Creep): void {
-    let source = creep.room.find(FIND_SOURCES)[0];
-    if (source.energy === 0) {
-        source = creep.room.find(FIND_SOURCES)[1];
-    }
-    if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(source);
-    }
-    if (creep.carry.energy === creep.carryCapacity) {
-        creep.memory[MEMORY_TASK] = '';
-    }
-}
 
 //interface PathFinderGoal {
 //    pos: RoomPosition;
