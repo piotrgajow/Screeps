@@ -1,5 +1,5 @@
 import { Task } from './task';
-import COMMON from '../../common-data';
+import COMMON from '../../common';
 
 export class FillSpawn extends Task {
 

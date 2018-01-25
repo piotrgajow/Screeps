@@ -1,6 +1,4 @@
-import { MAIN_SPAWN } from '../constants';
-
-import COMMON from '../common-data';
+import COMMON from '../common';
 
 const MEMORY = {
     ROLE: 'role',
@@ -46,7 +44,7 @@ export class CreepRole {
 
     private findNewTask(): string {
         if (this.creep.carry.energy === this.creep.carryCapacity) {
-            if (Game.spawns[MAIN_SPAWN].energy === Game.spawns[MAIN_SPAWN].energyCapacity) {
+            if (COMMON.MAIN_SPAWN.energy === COMMON.MAIN_SPAWN.energyCapacity) {
                 return 'upgrade-controller';
             } else {
                 return 'fill-spawn';

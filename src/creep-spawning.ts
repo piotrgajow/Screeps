@@ -1,11 +1,11 @@
 
-import { MAIN_SPAWN } from './constants';
+import COMMON from './common';
 
 export class CreepSpawning {
 
     public static execute(): void {
         if (Object.keys(Game.creeps).length < 5) {
-            Game.spawns[MAIN_SPAWN].spawnCreep(
+            COMMON.MAIN_SPAWN.spawnCreep(
                 [WORK, WORK, CARRY, MOVE],
                 `Harvester${CreepSpawning.creepIndex()}`,
                 { memory: { role: 'harvester' } }
