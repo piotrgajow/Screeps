@@ -1,9 +1,8 @@
-
 import { MAIN_SPAWN } from '../constants';
 
 import * as ExtractEnergy from '../extract-energy';
 import * as FillSpawn from '../fill-spawn';
-import * as UpgradeController from '../upgrade-controller';
+import COMMON_DATA from '../common-data';
 
 const MEMORY = {
     ROLE: 'role',
@@ -37,7 +36,7 @@ export class CreepRole {
                     FillSpawn.execute(this.creep);
                     break;
                 case 'upgrade-controller':
-                    UpgradeController.execute(this.creep);
+                    COMMON_DATA.TASKS[task].execute(this.creep);
                     break;
                 default:
                     console.log(`Behaviour for task ${task} is undefined`);
