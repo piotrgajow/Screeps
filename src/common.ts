@@ -15,7 +15,7 @@ class CommonData {
 
     MEMORY = {
         CREEP: {
-            TASK: 'tast',
+            TASK: 'task',
             ROLE: 'role',
         },
     };
