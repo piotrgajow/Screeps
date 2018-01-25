@@ -1,10 +1,5 @@
 import COMMON from '../common';
 
-const MEMORY = {
-    ROLE: 'role',
-    TASK: 'task',
-};
-
 export class CreepRole {
 
     constructor(
@@ -13,15 +8,15 @@ export class CreepRole {
     }
 
     get currentTask(): string {
-        return this.creep.memory[MEMORY.TASK];
+        return this.creep.memory[COMMON.MEMORY.CREEP.TASK];
     }
 
     set currentTask(newTask: string) {
-        this.creep.memory[MEMORY.TASK] = newTask;
+        this.creep.memory[COMMON.MEMORY.CREEP.TASK] = newTask;
     }
 
     public work(): void {
-        const role = this.creep.memory[MEMORY.ROLE];
+        const role = this.creep.memory[COMMON.MEMORY.CREEP.ROLE];
         if (role === 'harvester') {
             const task = this.getTaskToExecute();
             COMMON.TASKS[task].execute(this.creep);

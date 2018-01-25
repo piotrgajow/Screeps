@@ -13,6 +13,13 @@ class CommonData {
 
     MAIN_SPAWN = Game.spawns['Spawn1'];
 
+    MEMORY = {
+        CREEP: {
+            TASK: 'tast',
+            ROLE: 'role',
+        },
+    };
+
     constructor() {
         console.log('creating common data');
     }

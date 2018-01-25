@@ -1,11 +1,11 @@
+import COMMON from '../../common';
 
 export abstract class Task {
-    readonly MEMORY_KEY = 'task';
 
     public execute(creep: Creep): void {
         this.executeTask(creep);
         if (this.isTaskFinished(creep)) {
-            creep.memory[this.MEMORY_KEY] = '';
+            creep.memory[COMMON.MEMORY.CREEP.TASK] = '';
         }
     }
 
