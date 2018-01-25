@@ -1,5 +1,5 @@
 
-import { MEMORY_PATH, MEMORY_TASK } from './constants';
+import { MEMORY_TASK } from './constants';
 
 //export function initialize(creep: Creep): void {
 //    creep.memory[MEMORY_PATH] = findSourcePath(creep);

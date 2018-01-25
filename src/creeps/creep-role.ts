@@ -6,7 +6,8 @@ import * as FillSpawn from '../fill-spawn';
 import * as UpgradeController from '../upgrade-controller';
 
 const MEMORY = {
-    TASK: 'task'
+    ROLE: 'role',
+    TASK: 'task',
 };
 
 export class CreepRole {
@@ -25,20 +26,28 @@ export class CreepRole {
     }
 
     public work(): void {
-        const task = this.getTaskToExecute();
-        switch (task) {
-            case 'extract-energy':
-                ExtractEnergy.execute(this.creep);
-                break;
-            case 'fill-spawn':
-                FillSpawn.execute(this.creep);
-                break;
-            case 'upgrade-controller':
-                UpgradeController.execute(this.creep);
-                break;
-            default:
-                console.log(`Behaviour for task ${task} is undefined`);
+        const role = this.creep.memory[MEMORY.ROLE];
+        if (role === 'harvester') {
+            const task = this.getTaskToExecute();
+            switch (task) {
+                case 'extract-energy':
+                    ExtractEnergy.execute(this.creep);
+                    break;
+                case 'fill-spawn':
+                    FillSpawn.execute(this.creep);
+                    break;
+                case 'upgrade-controller':
+                    UpgradeController.execute(this.creep);
+                    break;
+                default:
+                    console.log(`Behaviour for task ${task} is undefined`);
+            }
+        } else if (role) {
+            console.error(`${this.creep.name} has unsupported role ${role}`);
+        } else {
+            console.error(`${this.creep.name} has no role assigned!`);
         }
+
     }
 
     private getTaskToExecute(): string {
