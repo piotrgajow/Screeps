@@ -7,6 +7,7 @@
   "scripts": {
     "lint": "tslint \"src/**/*.ts\"",
     "push-main": "rollup -c --dest main",
+    "push-test": "rollup -c --dest test",
     "push-pserver": "rollup -c --dest pserver",
     "push-sim": "rollup -c --dest sim",
     "test": "echo \"Error: no test specified\" && exit 1",

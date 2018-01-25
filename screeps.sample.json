@@ -7,6 +7,14 @@
     "path": "/",
     "branch": "main"
   },
+  "test": {
+    "token": "YOUR_TOKEN",
+    "protocol": "https",
+    "hostname": "screeps.com",
+    "port": 443,
+    "path": "/",
+    "branch": "test"
+  },
   "sim": {
     "token": "YOUR_TOKEN",
     "protocol": "https",
