@@ -19,11 +19,7 @@
             "allow-declarations"
         ],
         "trailing-comma": [
-            true,
-            {
-                "multiline": "never",
-                "singleline": "never"
-            }
+            true
         ],
         "variable-name": [
             true,
