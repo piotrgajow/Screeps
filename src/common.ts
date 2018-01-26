@@ -1,22 +1,31 @@
-import { UpgradeController } from './creeps/tasks/upgrade-controller';
-import { Task } from './creeps/tasks/task';
-import { FillSpawn } from './creeps/tasks/fill-spawn';
+import { CreepRole } from './creeps/creep-role';
+import { Harvester } from './creeps/harvester';
+
 import { ExtractEnergy } from './creeps/tasks/extract-energy';
+import { FillSpawn } from './creeps/tasks/fill-spawn';
+import { Task } from './creeps/tasks/task';
+import { UpgradeController } from './creeps/tasks/upgrade-controller';
+
+const MAIN_SPAWN_NAME = 'Spawn1';
 
 class CommonData {
 
-    TASKS: { [s: string]: Task; } = {
-        'upgrade-controller': new UpgradeController(),
-        'fill-spawn': new FillSpawn(),
-        'extract-energy': new ExtractEnergy(),
+    public ROLES: { [s: string]: CreepRole } = {
+        harvester: Harvester.prototype,
     };
 
-    MAIN_SPAWN = Game.spawns['Spawn1'];
+    public TASKS: { [s: string]: Task } = {
+        'extract-energy': new ExtractEnergy(),
+        'fill-spawn': new FillSpawn(),
+        'upgrade-controller': new UpgradeController(),
+    };
 
-    MEMORY = {
+    public MAIN_SPAWN = Game.spawns[MAIN_SPAWN_NAME];
+
+    public MEMORY = {
         CREEP: {
-            TASK: 'task',
             ROLE: 'role',
+            TASK: 'task',
         },
     };
 
@@ -29,6 +38,3 @@ class CommonData {
 const COMMON = new CommonData();
 
 export default COMMON;
-
-
-
