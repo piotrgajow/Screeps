@@ -4,6 +4,7 @@ import { Harvester } from './creeps/harvester';
 
 import { Build } from './creeps/tasks/build';
 import { ExtractEnergy } from './creeps/tasks/extract-energy';
+import { FillExtensions } from './creeps/tasks/fill-extensions';
 import { FillSpawn } from './creeps/tasks/fill-spawn';
 import { Task } from './creeps/tasks/task';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
@@ -20,6 +21,7 @@ class CommonData {
     public TASKS: { [s: string]: Task } = {
         'build': new Build(),
         'extract-energy': new ExtractEnergy(),
+        'fill-extensions': new FillExtensions(),
         'fill-spawn': new FillSpawn(),
         'upgrade-controller': new UpgradeController(),
     };
