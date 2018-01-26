@@ -9,9 +9,7 @@ export class Harvester extends CreepRole {
         if (this.creep.carry.energy === this.creep.carryCapacity) {
             if (COMMON.MAIN_SPAWN.energy < COMMON.MAIN_SPAWN.energyCapacity) {
                 return 'fill-spawn';
-            } else if (ROOM.findExtensions(this.creep.room).find((extension) => {
-                    return extension.energy < extension.energyCapacity;
-                })) {
+            } else if (_.any(ROOM.findExtensions(this.creep.room), Harvester.extensionNotFull)) {
                 return 'fill-extensions';
             } else {
                 return 'upgrade-controller';
@@ -19,6 +17,10 @@ export class Harvester extends CreepRole {
         } else {
             return 'extract-energy';
         }
+    }
+
+    private static extensionNotFull(extension: StructureExtension): boolean {
+        return extension.energy < extension.energyCapacity;
     }
 
 }

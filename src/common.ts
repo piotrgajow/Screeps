@@ -6,6 +6,7 @@ import { Build } from './creeps/tasks/build';
 import { ExtractEnergy } from './creeps/tasks/extract-energy';
 import { FillExtensions } from './creeps/tasks/fill-extensions';
 import { FillSpawn } from './creeps/tasks/fill-spawn';
+import { Repair } from './creeps/tasks/repair';
 import { Task } from './creeps/tasks/task';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
 
@@ -24,6 +25,7 @@ class CommonData {
         'fill-extensions': new FillExtensions(),
         'fill-spawn': new FillSpawn(),
         'upgrade-controller': new UpgradeController(),
+        'repair': new Repair(),
     };
 
     public MAIN_SPAWN = Game.spawns[MAIN_SPAWN_NAME];

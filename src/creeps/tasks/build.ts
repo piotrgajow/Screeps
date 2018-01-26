@@ -1,3 +1,5 @@
+import { ROOM } from '../../room-utils';
+
 import { Task } from './task';
 
 export class Build extends Task {
@@ -10,7 +12,7 @@ export class Build extends Task {
     }
 
     protected isTaskFinished(creep: Creep): boolean {
-        return creep.carry.energy === 0;
+        return creep.carry.energy === 0 || ROOM.findConstructionSites(creep.room).length === 0;
     }
 
 }
