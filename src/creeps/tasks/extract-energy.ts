@@ -2,7 +2,10 @@ import { Task } from './task';
 
 export class ExtractEnergy extends Task {
 
-    protected executeTask(creep:Creep):void {
+    public initialize(creep: Creep): void {
+    }
+
+    protected executeTask(creep: Creep): void {
         let source = creep.room.find(FIND_SOURCES)[0];
         if (source.energy === 0) {
             source = creep.room.find(FIND_SOURCES)[1];
@@ -12,7 +15,7 @@ export class ExtractEnergy extends Task {
         }
     }
 
-    protected isTaskFinished(creep:Creep):boolean {
+    protected isTaskFinished(creep: Creep): boolean {
         return creep.carry.energy === creep.carryCapacity
     }
 }

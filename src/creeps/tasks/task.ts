@@ -15,4 +15,6 @@ export abstract class Task {
 
     protected abstract isTaskFinished(creep: Creep, opts: any): boolean;
 
+    public abstract initialize(creep: Creep): void;
+
 }

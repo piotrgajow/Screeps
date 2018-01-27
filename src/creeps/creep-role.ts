@@ -17,6 +17,7 @@ export abstract class CreepRole {
             task = this.findNewTask();
             Logger.debug(this.creep, `New task '${task}' assigned`);
             this.creep.memory[COMMON.MEMORY.CREEP.TASK] = task;
+            COMMON.TASKS[task].initialize(this.creep);
         }
         return task;
     }

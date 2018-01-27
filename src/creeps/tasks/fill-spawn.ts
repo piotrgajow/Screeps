@@ -4,6 +4,9 @@ import { Task } from './task';
 
 export class FillSpawn extends Task {
 
+    public initialize(creep: Creep): void {
+    }
+
     protected executeTask(creep: Creep): void {
         if (creep.transfer(COMMON.MAIN_SPAWN, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
             creep.moveTo(COMMON.MAIN_SPAWN);

@@ -4,6 +4,9 @@ import { Task } from './task';
 
 export class Repair extends Task {
 
+    public initialize(creep: Creep): void {
+    }
+
     protected executeTask(creep: Creep): any {
         const structures = ROOM.findStructures(creep.room);
         const damagedStructures = structures.filter((structure) => structure.hits < structure.hitsMax);
