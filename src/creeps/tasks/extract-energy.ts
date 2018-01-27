@@ -1,22 +1,26 @@
+import { MEMORY } from '../../memory';
+
 import { Task } from './task';
 
 export class ExtractEnergy extends Task {
 
     public initialize(creep: Creep): void {
-    }
-
-    protected executeTask(creep: Creep): void {
         let source = creep.room.find(FIND_SOURCES)[0];
         if (source.energy === 0) {
             source = creep.room.find(FIND_SOURCES)[1];
         }
+        creep.memory[MEMORY.TARGET] = source.id;
+    }
+
+    protected executeTask(creep: Creep): void {
+        const source = Game.getObjectById(creep.memory[MEMORY.TARGET]) as Source;
         if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
             creep.moveTo(source);
         }
     }
 
     protected isTaskFinished(creep: Creep): boolean {
-        return creep.carry.energy === creep.carryCapacity
+        return creep.carry.energy === creep.carryCapacity;
     }
 }
 
