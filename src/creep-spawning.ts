@@ -34,7 +34,7 @@ export class CreepSpawning {
         COMMON.MAIN_SPAWN.spawnCreep(
             definition.parts,
             `${definition.name}-${CreepSpawning.creepIndex()}`,
-            { memory: { role, task: '', debug: false } },
+            { memory: { role, task: '', debug: false, target: '' } },
         );
     }
 
