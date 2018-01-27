@@ -1,5 +1,5 @@
 import COMMON from '../common';
-import { Logger } from './logger';
+import { Logger } from '../logger';
 
 export abstract class CreepRole {
 
