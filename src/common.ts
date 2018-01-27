@@ -24,8 +24,8 @@ class CommonData {
         'extract-energy': new ExtractEnergy(),
         'fill-extensions': new FillExtensions(),
         'fill-spawn': new FillSpawn(),
-        'upgrade-controller': new UpgradeController(),
         'repair': new Repair(),
+        'upgrade-controller': new UpgradeController(),
     };
 
     public MAIN_SPAWN = Game.spawns[MAIN_SPAWN_NAME];
@@ -33,6 +33,7 @@ class CommonData {
     public MEMORY = {
         CREEP: {
             ROLE: 'role',
+            TARGET: 'target',
             TASK: 'task',
         },
     };
