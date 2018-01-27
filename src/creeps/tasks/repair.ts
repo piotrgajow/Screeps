@@ -14,7 +14,6 @@ export class Repair extends Task {
     }
 
     protected isTaskFinished(creep: Creep, opts: any): boolean {
-        console.log(creep.carry.energy === 0);
         return creep.carry.energy === 0;
     }
 
