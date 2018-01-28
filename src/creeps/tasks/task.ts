@@ -1,4 +1,4 @@
-import { Logger } from '../../logger';
+import { Logger } from '../../logging/logger';
 import { MEMORY } from '../../memory';
 
 export abstract class Task {
@@ -6,7 +6,7 @@ export abstract class Task {
     public execute(creep: Creep): void {
         const result = this.executeTask(creep);
         if (this.isTaskFinished(creep, result)) {
-            Logger.debug(creep, 'Task finished');
+            Logger.debug(creep.memory[MEMORY.DEBUG], creep, '- Task finished');
             creep.memory[MEMORY.TASK] = '';
             creep.memory[MEMORY.TARGET] = '';
         }

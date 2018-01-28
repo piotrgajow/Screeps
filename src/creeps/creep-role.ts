@@ -1,6 +1,7 @@
 import COMMON from '../common';
-import { Logger } from '../logger';
+import { Logger } from '../logging/logger';
 import { MEMORY } from '../memory';
+import { LogObject } from '../logging/log-object';
 
 export abstract class CreepRole {
 
@@ -8,7 +9,12 @@ export abstract class CreepRole {
 
     public work(): void {
         const task = this.getTaskToExecute();
-        Logger.debug(this.creep, `Working on task '${task}' with target '${this.creep.memory[MEMORY.TARGET]}'`);
+        Logger.debug(
+            this.debugFlag(),
+            this.creep,
+            `- Working on task '${task}' with`,
+            this.logTarget()
+        );
         COMMON.TASKS[task].execute(this.creep);
     }
 
@@ -16,7 +22,7 @@ export abstract class CreepRole {
         let task = this.creep.memory[MEMORY.TASK];
         if (!task) {
             task = this.findNewTask();
-            Logger.debug(this.creep, `New task '${task}' assigned`);
+            Logger.debug(this.debugFlag(), this.creep, `- New task '${task}' assigned`);
             this.creep.memory[MEMORY.TASK] = task;
             COMMON.TASKS[task].initialize(this.creep);
         }
@@ -24,5 +30,13 @@ export abstract class CreepRole {
     }
 
     protected abstract findNewTask(): string;
+
+    private debugFlag(): boolean {
+        return this.creep.memory[MEMORY.DEBUG];
+    }
+
+    private logTarget(): LogObject {
+        return { id: this.creep.memory[MEMORY.TARGET], name: 'target' };
+    }
 
 }
