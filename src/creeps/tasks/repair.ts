@@ -18,7 +18,7 @@ export class Repair extends Task {
     }
 
     protected isTaskFinished(creep: Creep, opts: any): boolean {
-        return creep.carry.energy === 0 && (opts.hits === opts.hitsMax);
+        return creep.carry.energy === 0 || (opts.hits === opts.hitsMax);
     }
 
     private findStructureToRepair(creep: Creep): any {
