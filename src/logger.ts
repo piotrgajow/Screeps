@@ -1,14 +1,4 @@
-
-interface LogObject {
-    id: string;
-    name: string;
-}
-
-interface LogObjectWithMemory {
-    id: string;
-    name: string;
-    memory: object;
-}
+import { LogObject } from './logging/log-object';
 
 enum LogLevel {
     DEBUG = '[DEBUG]',
@@ -18,35 +8,43 @@ enum LogLevel {
 
 export class Logger {
 
-    private static MEMORY_KEY = 'debug';
-
-    public static debug(object: LogObjectWithMemory, description: string): void {
-        if (object.memory[Logger.MEMORY_KEY]) {
-            const message = this.formatMessage(LogLevel.DEBUG, object, description);
-            console.log(message);
+    public static debug(logFlag: boolean, ...logObjects: Array<string | LogObject>): void {
+        if (logFlag) {
+            this.printLog(LogLevel.DEBUG, logObjects);
         }
     }
 
-    public static log(object: LogObject, description: string): void {
-        const message = this.formatMessage(LogLevel.LOG, object, description);
-        console.log(message);
+    public static log(...logObjects: Array<string | LogObject>): void {
+        this.printLog(LogLevel.LOG, logObjects);
     }
 
-    public static error(object: LogObject, description: string): void {
-        const message = this.formatMessage(LogLevel.ERROR, object, description);
-        console.log(message);
-        Game.notify(message, 15);
+    public static error(...logObjects: Array<string | LogObject>): void {
+        this.printLog(LogLevel.ERROR, logObjects);
+        // this.sendNotification(logObjects); // TODO
+        // Game.notify(message, 15);
     }
 
-    private static formatMessage(logLevel: LogLevel, object: LogObject, message: string): string {
-        const objectUrl = this.buildUrl(object.id, object.name);
-        return `${logLevel} ${objectUrl}: ${message}`;
+    private static printLog(logLevel: LogLevel, logObjects: Array<string | LogObject>): void {
+        const message = this.buildMessage(logObjects);
+        console.log(`${logLevel} ${message}`);
     }
 
-    private static buildUrl(id: string, text: string): string {
-        const onclick = `angular.element('body').injector().get('RoomViewPendingSelector').set('${id}');`;
+    private static buildMessage(logObjects: Array<string | LogObject>): string {
+        return logObjects.map(this.toString).join(' ');
+    }
+
+    private static toString(logObject: string | LogObject): string {
+        if (typeof logObject === 'string') {
+            return logObject;
+        } else {
+            return this.buildUrl(logObject);
+        }
+    }
+
+    private static buildUrl(logObject: LogObject): string {
+        const onclick = `angular.element('body').injector().get('RoomViewPendingSelector').set('${logObject.id}');`;
         const style = 'color: #428bca; cursor: pointer;';
-        return `<span style="${style}" onclick="${onclick}">${text}</span>`;
+        return `<span style="${style}" onclick="${onclick}">${logObject.name}</span>`;
     }
 
 }
