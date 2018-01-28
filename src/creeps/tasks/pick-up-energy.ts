@@ -10,7 +10,7 @@ export class PickUpEnergy extends Task {
         if (energyContainer) {
             creep.memory[MEMORY.TARGET] = energyContainer.id;
         } else {
-            Logger.error(creep, '- Energy container not found');
+            Logger.error(creep.room.name, creep, '- Energy container not found');
         }
     }
 
