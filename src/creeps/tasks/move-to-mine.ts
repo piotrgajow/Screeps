@@ -5,10 +5,14 @@ import { Task } from './task';
 export class MoveToMine extends Task {
 
     public initialize(creep: Creep): void {
-        const mineFlag = creep.room.find(FIND_FLAGS, { filter: (it) => it.name.includes('mine') }) as Flag;
-        const mineContainer = mineFlag.pos.lookFor(LOOK_STRUCTURES)
-            .find((it) => it.structureType === STRUCTURE_CONTAINER);
-        creep.memory[MEMORY.TARGET] = mineContainer.id;
+        const mineFlag = creep.room.find(FIND_FLAGS, { filter: (it) => it.name.includes('mine') })[0] as Flag;
+        const mineStructures = mineFlag.pos.lookFor(LOOK_STRUCTURES) || [];
+        const mineContainer = mineStructures.find(findContainers);
+        if (mineContainer) {
+            creep.memory[MEMORY.TARGET] = mineContainer.id;
+        } else {
+            console.error('No mine found!');
+        }
     }
 
     protected executeTask(creep: Creep): any {
@@ -21,4 +25,8 @@ export class MoveToMine extends Task {
         return creep.pos === opts.mine.pos;
     }
 
+}
+
+function findContainers(structure: any): boolean {
+    return structure.structureType === STRUCTURE_CONTAINER;
 }
