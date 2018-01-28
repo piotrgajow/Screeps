@@ -1,4 +1,4 @@
-import { LogObject } from './logging/log-object';
+import { LogObject } from './log-object';
 
 enum LogLevel {
     DEBUG = '[DEBUG]',

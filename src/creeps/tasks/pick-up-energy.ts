@@ -1,4 +1,4 @@
-import { Logger } from '../../logger';
+import { Logger } from '../../logging/logger';
 import { MEMORY } from '../../memory';
 
 import { Task } from './task';

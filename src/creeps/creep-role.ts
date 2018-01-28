@@ -1,5 +1,5 @@
 import COMMON from '../common';
-import { Logger } from '../logger';
+import { Logger } from '../logging/logger';
 import { MEMORY } from '../memory';
 import { LogObject } from '../logging/log-object';
 
