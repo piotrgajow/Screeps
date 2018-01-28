@@ -6,8 +6,9 @@ export class CreepSpawning {
     public static execute(): void {
         const TARGETS = {
             builder: 2,
-            harvester: 5,
+            harvester: 0,
             miner: 1,
+            worker: 5,
         };
 
         const creepRoleCounts = Object.keys(Game.creeps)
@@ -16,7 +17,7 @@ export class CreepSpawning {
                 const role = current.memory[COMMON.MEMORY.CREEP.ROLE];
                 iter[role] = iter[role] + 1;
                 return iter;
-            }, { builder: 0, harvester: 0, miner: 0 });
+            }, { builder: 0, harvester: 0, miner: 0, worker: 0 });
 
         const roleToBuild = Object.keys(TARGETS).find((role) => {
             return creepRoleCounts[role] < TARGETS[role];
@@ -31,6 +32,7 @@ export class CreepSpawning {
             builder: { parts: [WORK, WORK, CARRY, MOVE], name: 'Builder' },
             harvester: { parts: [WORK, WORK, CARRY, MOVE], name: 'Harvester' },
             miner: { parts: [MOVE, WORK, WORK, WORK, WORK, WORK], name: 'Miner' },
+            worker: { parts: [WORK, WORK, CARRY, CARRY, MOVE, MOVE], name: 'Worker' },
         };
         const definition = DEFINITIONS[role];
         COMMON.MAIN_SPAWN.spawnCreep(

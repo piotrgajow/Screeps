@@ -10,7 +10,6 @@ export class PickUpEnergy extends Task {
     }
 
     protected executeTask(creep: Creep): any {
-        this.initialize(creep);
         const energyContainer = Game.getObjectById(creep.memory[MEMORY.TARGET]) as StructureContainer;
         if (creep.withdraw(energyContainer, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
             creep.moveTo(energyContainer);

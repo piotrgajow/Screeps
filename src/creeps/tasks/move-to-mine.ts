@@ -22,7 +22,7 @@ export class MoveToMine extends Task {
     }
 
     protected isTaskFinished(creep: Creep, opts: any): boolean {
-        return creep.pos === opts.mine.pos;
+        return creep.pos.toString() === opts.mine.pos.toString();
     }
 
 }
