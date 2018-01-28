@@ -6,6 +6,7 @@ import { Build } from './creeps/tasks/build';
 import { ExtractEnergy } from './creeps/tasks/extract-energy';
 import { FillExtensions } from './creeps/tasks/fill-extensions';
 import { FillSpawn } from './creeps/tasks/fill-spawn';
+import { Miner } from './creeps/tasks/miner';
 import { MoveToMine } from './creeps/tasks/move-to-mine';
 import { Repair } from './creeps/tasks/repair';
 import { Task } from './creeps/tasks/task';
@@ -18,6 +19,7 @@ class CommonData {
     public ROLES: { [s: string]: CreepRole } = {
         builder: Builder.prototype,
         harvester: Harvester.prototype,
+        miner: Miner.prototype,
     };
 
     public TASKS: { [s: string]: Task } = {
