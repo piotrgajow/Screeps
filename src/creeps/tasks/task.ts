@@ -12,10 +12,10 @@ export abstract class Task {
         }
     }
 
+    public abstract initialize(creep: Creep): void;
+
     protected abstract executeTask(creep: Creep): any;
 
     protected abstract isTaskFinished(creep: Creep, opts: any): boolean;
-
-    public abstract initialize(creep: Creep): void;
 
 }

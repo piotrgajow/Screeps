@@ -6,6 +6,7 @@ import { Build } from './creeps/tasks/build';
 import { ExtractEnergy } from './creeps/tasks/extract-energy';
 import { FillExtensions } from './creeps/tasks/fill-extensions';
 import { FillSpawn } from './creeps/tasks/fill-spawn';
+import { MoveToMine } from './creeps/tasks/move-to-mine';
 import { Repair } from './creeps/tasks/repair';
 import { Task } from './creeps/tasks/task';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
@@ -24,6 +25,7 @@ class CommonData {
         'extract-energy': new ExtractEnergy(),
         'fill-extensions': new FillExtensions(),
         'fill-spawn': new FillSpawn(),
+        'move-to-mine': new MoveToMine(),
         'repair': new Repair(),
         'upgrade-controller': new UpgradeController(),
     };
