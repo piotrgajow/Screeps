@@ -6,7 +6,7 @@ import { Task } from './task';
 export class PickUpEnergy extends Task {
 
     public initialize(creep: Creep): void {
-        const energyContainer = creep.pos.findClosestByPath(FIND_STRUCTURES, { filter: isContainer });
+        const energyContainer = creep.pos.findClosestByRange(FIND_STRUCTURES, { filter: isContainer });
         if (energyContainer) {
             creep.memory[MEMORY.TARGET] = energyContainer.id;
         } else {
