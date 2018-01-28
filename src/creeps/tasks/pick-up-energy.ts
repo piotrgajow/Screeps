@@ -1,3 +1,4 @@
+import { Logger } from '../../logger';
 import { MEMORY } from '../../memory';
 
 import { Task } from './task';
@@ -5,8 +6,12 @@ import { Task } from './task';
 export class PickUpEnergy extends Task {
 
     public initialize(creep: Creep): void {
-        const energyContainer = creep.pos.findClosestByPath(FIND_STRUCTURES, { filter: containerNotEmpty });
-        creep.memory[MEMORY.TARGET] = energyContainer.id;
+        const energyContainer = creep.pos.findClosestByPath(FIND_STRUCTURES, { filter: isContainer });
+        if (energyContainer) {
+            creep.memory[MEMORY.TARGET] = energyContainer.id;
+        } else {
+            Logger.error(creep, 'Energy container not found');
+        }
     }
 
     protected executeTask(creep: Creep): any {
@@ -18,12 +23,11 @@ export class PickUpEnergy extends Task {
     }
 
     protected isTaskFinished(creep: Creep, opts: any): boolean {
-        return creep.carry.energy === creep.carryCapacity || opts.energyContainer.store.energy === 0;
+        return creep.carry.energy === creep.carryCapacity;
     }
 
 }
 
-function containerNotEmpty(structure: any) {
-    const isContainer = structure.structureType === STRUCTURE_CONTAINER;
-    return isContainer && structure.store.energy > 0;
+function isContainer(structure: any): boolean {
+    return structure.structureType === STRUCTURE_CONTAINER;
 }

@@ -32,7 +32,7 @@ export class Logger {
 
     public static error(object: NamedObject, description: string): void {
         const message = this.formatMessage(LogLevel.ERROR, object, description);
-        console.error(message);
+        console.log(message);
         Game.notify(message, 15);
     }
 

@@ -8,7 +8,7 @@ export class CreepSpawning {
             builder: 2,
             harvester: 0,
             miner: 1,
-            worker: 5,
+            worker: 4,
         };
 
         const creepRoleCounts = Object.keys(Game.creeps)
