@@ -25,7 +25,7 @@ export class ROOM {
         if (storageId) {
             return Game.getObjectById(storageId) as StructureStorage;
         } else {
-            const storage = room.find(FIND_MY_STRUCTURES, { filter: isStorage }) as StructureStorage;
+            const storage = room.find(FIND_MY_STRUCTURES, { filter: isStorage })[0] as StructureStorage;
             room.memory[MEMORY.STORAGE] = storage.id;
             return storage;
         }
