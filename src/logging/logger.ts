@@ -1,9 +1,9 @@
 import { LogObject } from './log-object';
 
 enum LogLevel {
-    DEBUG = '[DEBUG]',
-    LOG = '[LOG]',
-    ERROR = '[ERROR]',
+    DEBUG = 'DEBUG',
+    LOG = 'LOG',
+    ERROR = 'ERROR',
 }
 
 export class Logger {
@@ -25,7 +25,7 @@ export class Logger {
 
     private static printLog(logLevel: LogLevel, logObjects: Array<string | LogObject>): void {
         const message = Logger.buildMessage(logObjects, Logger.urlLogObjectFormatter);
-        console.log(`${logLevel} ${message}`);
+        console.log(`[${Game.time}][${logLevel}] ${message}`);
     }
 
     private static buildMessage(logObjects: Array<string | LogObject>, formatter: (a: LogObject) => string): string {
@@ -52,7 +52,7 @@ export class Logger {
         const error = Logger.buildMessage(logObjects, Logger.simpleLogObjectFormatter);
         const shard = Game.shard;
         const url = `https://screeps.com/a/#!/history/${shard}/${room}?t=${Game.time}`;
-        const message = `<a href="${url}">Error occurred: ${error}</a>a>`;
+        const message = `<a href="${url}">[${Game.time}] Error occurred: ${error}</a>`;
         Game.notify(message, 15);
     }
 

@@ -46,10 +46,6 @@ class CommonData {
         },
     };
 
-    constructor() {
-        console.log('creating common data');
-    }
-
 }
 
 const COMMON = new CommonData();
