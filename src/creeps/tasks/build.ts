@@ -1,7 +1,4 @@
-import { Logger } from '../../logging/logger';
-
 import { MEMORY } from '../../memory';
-import { ROOM } from '../../room-utils';
 
 import { Task } from './task';
 
@@ -19,8 +16,8 @@ export class Build extends Task {
     }
 
     protected isTaskFinished(creep: Creep): boolean {
-        Logger.log(Game.getObjectById(creep.memory[MEMORY.TARGET]) as string);
-        return creep.carry.energy === 0 || ROOM.findConstructionSites(creep.room).length === 0;
+        const targetIsNull = Game.getObjectById(creep.memory[MEMORY.TARGET]) === null;
+        return creep.carry.energy === 0 || targetIsNull;
     }
 
 }
