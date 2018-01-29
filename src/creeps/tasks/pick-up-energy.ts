@@ -2,6 +2,8 @@ import { Logger } from '../../logging/logger';
 import { MEMORY } from '../../memory';
 import { ROOM } from '../../room-utils';
 
+import { isContainer } from '../../structure-filters';
+
 import { Task } from './task';
 
 export class PickUpEnergy extends Task {
@@ -36,8 +38,4 @@ export class PickUpEnergy extends Task {
         return creepIsFull || energyStorageIsEmpty;
     }
 
-}
-
-function isContainer(structure: any): boolean {
-    return structure.structureType === STRUCTURE_CONTAINER;
 }

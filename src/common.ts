@@ -9,6 +9,7 @@ import { FillExtensions } from './creeps/tasks/fill-extensions';
 import { FillSpawn } from './creeps/tasks/fill-spawn';
 import { Miner } from './creeps/tasks/miner';
 import { MoveToMine } from './creeps/tasks/move-to-mine';
+import { PickFromContainer } from './creeps/tasks/pick-from-container';
 import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
 import { Task } from './creeps/tasks/task';
@@ -31,6 +32,7 @@ class CommonData {
         'fill-extensions': new FillExtensions(),
         'fill-spawn': new FillSpawn(),
         'move-to-mine': new MoveToMine(),
+        'pick-from-container': new PickFromContainer(),
         'pick-up-energy': new PickUpEnergy(),
         'repair': new Repair(),
         'upgrade-controller': new UpgradeController(),
