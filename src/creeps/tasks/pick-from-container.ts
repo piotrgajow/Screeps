@@ -7,7 +7,7 @@ import { Task } from './task';
 
 export class PickFromContainer extends Task {
 
-    private readonly FILL_THRESHOLD = 1500;
+    private readonly FILL_THRESHOLD = 1000;
 
     public initialize(creep: Creep): void {
         creep.memory[MEMORY.TARGET] = this.findContainerId(creep);
