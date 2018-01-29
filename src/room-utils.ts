@@ -1,3 +1,8 @@
+import { MEMORY } from './memory';
+
+function isStorage(structure: Structure): boolean {
+    return structure.structureType === STRUCTURE_STORAGE;
+}
 
 export class ROOM {
 
@@ -13,6 +18,17 @@ export class ROOM {
         return this.findStructures(room)
             .filter((structure) => structure.structureType === STRUCTURE_EXTENSION)
             .map((structure) => structure as StructureExtension);
+    }
+
+    public static findStorage(room: Room): StructureStorage {
+        const storageId = room.memory[MEMORY.STORAGE];
+        if (storageId) {
+            return Game.getObjectById(storageId) as StructureStorage;
+        } else {
+            const storage = room.find(FIND_MY_STRUCTURES, { filter: isStorage }) as StructureStorage;
+            room.memory[MEMORY.STORAGE] = storage.id;
+            return storage;
+        }
     }
 
 }
