@@ -7,7 +7,7 @@ export class CreepSpawning {
         const TARGETS = {
             builder: 2,
             harvester: 0,
-            hauler: 1,
+            hauler: 2,
             miner: 2,
             worker: 4,
         };
