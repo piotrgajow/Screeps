@@ -41,5 +41,5 @@ function findMinerCreeps(): Creep[] {
 }
 
 function getAllMines(): string[] {
-    return Memory.mines;
+    return _.filter(Game.flags, (flag) => flag.name.includes('mine');
 }
