@@ -4,5 +4,6 @@ export enum MEMORY {
     SOURCE = 'source',
     STORAGE = 'storage',
     TARGET = 'target',
+    TARGETS = 'targets',
     TASK = 'task',
 }

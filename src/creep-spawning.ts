@@ -1,27 +1,20 @@
 
 import COMMON from './common';
+import { MEMORY } from './memory';
 
 export class CreepSpawning {
 
     public static execute(): void {
-        const TARGETS = {
-            builder: 2,
-            harvester: 0,
-            hauler: 2,
-            miner: 2,
-            worker: 4,
-        };
+        const targets = COMMON.MAIN_SPAWN.memory[MEMORY.TARGETS];
+        const creeps = _.values(Game.creeps) as Creep[];
+        const existingCreepCount = _.reduce(creeps, (accumulator, creep) => {
+            const role = creep.memory[MEMORY.ROLE];
+            accumulator[role] = (accumulator[role] || 0) + 1;
+            return accumulator;
+        }, {});
 
-        const creepRoleCounts = Object.keys(Game.creeps)
-            .map((it) => Game.creeps[it])
-            .reduce((iter, current) => {
-                const role = current.memory[COMMON.MEMORY.CREEP.ROLE];
-                iter[role] = iter[role] + 1;
-                return iter;
-            }, { builder: 0, harvester: 0, hauler: 0, miner: 0, worker: 0 });
-
-        const roleToBuild = Object.keys(TARGETS).find((role) => {
-            return creepRoleCounts[role] < TARGETS[role];
+        const roleToBuild = Object.keys(targets).find((role) => {
+            return existingCreepCount[role] < targets[role];
         });
         if (roleToBuild) {
             CreepSpawning.spawn(roleToBuild);
