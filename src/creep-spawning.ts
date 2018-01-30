@@ -8,7 +8,7 @@ export class CreepSpawning {
             builder: 2,
             harvester: 0,
             hauler: 1,
-            miner: 1,
+            miner: 2,
             worker: 4,
         };
 
