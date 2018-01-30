@@ -4,6 +4,8 @@ import { MEMORY } from './memory';
 
 export class CreepSpawning {
 
+    private static readonly PRIORITIES = ['harvester', 'miner', 'hauler'];
+
     public static execute(): void {
         const targets = COMMON.MAIN_SPAWN.memory[MEMORY.TARGETS];
         const creeps = _.values(Game.creeps) as Creep[];
@@ -13,7 +15,8 @@ export class CreepSpawning {
             return accumulator;
         }, {});
 
-        const roleToBuild = Object.keys(targets).find((role) => {
+        const roleCheckOrder = _.union(CreepSpawning.PRIORITIES, _.keys(COMMON.ROLES));
+        const roleToBuild = roleCheckOrder.find((role) => {
             return existingCreepCount[role] < targets[role];
         });
         if (roleToBuild) {
