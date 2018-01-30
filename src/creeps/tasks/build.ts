@@ -11,7 +11,7 @@ export class Build extends Task {
     protected executeTask(creep: Creep): void {
         const target = Game.getObjectById(creep.memory[MEMORY.TARGET]) as ConstructionSite;
         if (creep.build(target) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(target);
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

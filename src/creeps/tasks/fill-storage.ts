@@ -16,7 +16,7 @@ export class FillStorage extends Task {
         }
 
         if (creep.transfer(storage, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(storage);
+            creep.moveTo(storage, { visualizePathStyle: {} });
         }
         return {};
     }

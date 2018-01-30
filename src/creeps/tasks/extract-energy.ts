@@ -15,7 +15,7 @@ export class ExtractEnergy extends Task {
     protected executeTask(creep: Creep): void {
         const source = Game.getObjectById(creep.memory[MEMORY.TARGET]) as Source;
         if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(source);
+            creep.moveTo(source, { visualizePathStyle: {} });
         }
     }
 

@@ -14,7 +14,7 @@ export class Mine extends Task {
             const source = Game.getObjectById(mineFlag.memory[MEMORY.SOURCE]) as Source;
             creep.harvest(source);
         } else {
-            creep.moveTo(mineFlag);
+            creep.moveTo(mineFlag, { visualizePathStyle: {} });
         }
     }
 
@@ -41,5 +41,6 @@ function findMinerCreeps(): Creep[] {
 }
 
 function getAllMines(): string[] {
-    return _.filter(Game.flags, (flag) => flag.name.includes('mine');
+    const mineFlags = _.filter(Game.flags, (flag) => flag.name.includes('mine'));
+    return _.map(mineFlags, (flag) => flag.name);
 }

@@ -20,7 +20,7 @@ export class PickFromContainer extends Task {
         }
 
         if (creep.withdraw(container, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(container);
+            creep.moveTo(container, { visualizePathStyle: {} });
         }
         return { container };
     }

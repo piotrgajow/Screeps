@@ -12,7 +12,7 @@ export class Repair extends Task {
     protected executeTask(creep: Creep): any {
         const target = Game.getObjectById(creep.memory[MEMORY.TARGET]) as Structure;
         if (creep.repair(target) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(target);
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
         return target;
     }

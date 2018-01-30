@@ -27,7 +27,7 @@ export class PickUpEnergy extends Task {
     protected executeTask(creep: Creep): any {
         const energyStorage = Game.getObjectById(creep.memory[MEMORY.TARGET]) as StructureContainer | StructureStorage;
         if (creep.withdraw(energyStorage, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(energyStorage);
+            creep.moveTo(energyStorage, { visualizePathStyle: {} });
         }
         return { energyStorage };
     }
