@@ -1,7 +1,9 @@
 import { Builder } from './creeps/builder';
 import { CreepRole } from './creeps/creep-role';
+import { EnergyDistributor } from './creeps/energy-distributor';
 import { Harvester } from './creeps/harvester';
 import { Hauler } from './creeps/hauler';
+import { Miner } from './creeps/miner';
 import { Worker } from './creeps/worker';
 
 import { Build } from './creeps/tasks/build';
@@ -9,14 +11,14 @@ import { ExtractEnergy } from './creeps/tasks/extract-energy';
 import { FillExtensions } from './creeps/tasks/fill-extensions';
 import { FillSpawn } from './creeps/tasks/fill-spawn';
 import { FillStorage } from './creeps/tasks/fill-storage';
-import { Miner } from './creeps/miner';
+import { FillTower } from './creeps/tasks/fill-tower';
 import { Mine } from './creeps/tasks/mine';
+import { NoOp } from './creeps/tasks/no-op';
 import { PickFromContainer } from './creeps/tasks/pick-from-container';
 import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
 import { Task } from './creeps/tasks/task';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
-import { EnergyDistributor } from './creeps/energy-distributor';
 
 const MAIN_SPAWN_NAME = 'Spawn1';
 
@@ -37,7 +39,9 @@ class CommonData {
         'fill-extensions': new FillExtensions(),
         'fill-spawn': new FillSpawn(),
         'fill-storage': new FillStorage(),
+        'fill-tower': new FillTower(),
         'mine': new Mine(),
+        'no-op': new NoOp(),
         'pick-from-container': new PickFromContainer(),
         'pick-up-energy': new PickUpEnergy(),
         'repair': new Repair(),

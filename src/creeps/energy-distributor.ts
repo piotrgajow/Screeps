@@ -11,10 +11,19 @@ export class EnergyDistributor extends CreepRole {
             return 'fill-spawn';
         } else if (this.creep.room.energyAvailable < this.creep.room.energyCapacityAvailable) {
             return 'fill-extensions';
+        } else if (this.creep.room.find(FIND_MY_STRUCTURES, { filter: isNotFullTower }).length) {
+            return 'fill-tower';
         } else {
-            return '';
+            return 'no-op';
         }
     }
 
 }
 
+function isNotFullTower(structure: Structure): boolean {
+    if (structure.structureType !== STRUCTURE_TOWER) {
+        return false;
+    }
+    const tower = structure as StructureTower;
+    return tower.energy < tower.energyCapacity;
+}
