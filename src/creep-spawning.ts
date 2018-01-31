@@ -1,5 +1,6 @@
 
 import COMMON from './common';
+import { Logger } from './logging/logger';
 import { MEMORY } from './memory';
 
 export class CreepSpawning {
@@ -14,12 +15,15 @@ export class CreepSpawning {
             accumulator[role] = (accumulator[role] || 0) + 1;
             return accumulator;
         }, {});
+        Logger.debug(COMMON.MAIN_SPAWN.memory[MEMORY.DEBUG], 'Existing creeps:', JSON.stringify(existingCreepCount));
+        Logger.debug(COMMON.MAIN_SPAWN.memory[MEMORY.DEBUG], 'Targets:', JSON.stringify(targets));
 
         const roleCheckOrder = _.union(CreepSpawning.PRIORITIES, _.keys(COMMON.ROLES));
         const roleToBuild = roleCheckOrder.find((role) => {
-            return existingCreepCount[role] < targets[role];
+            return (existingCreepCount[role] || 0) < (targets[role] || 0);
         });
         if (roleToBuild) {
+            Logger.debug(COMMON.MAIN_SPAWN.memory[MEMORY.DEBUG], 'Spawning:', roleToBuild);
             CreepSpawning.spawn(roleToBuild);
         }
     }

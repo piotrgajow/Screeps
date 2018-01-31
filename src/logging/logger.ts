@@ -6,34 +6,42 @@ enum LogLevel {
     ERROR = 'ERROR',
 }
 
+type LogEntity = string | LogObject | null | undefined | number;
+
+function isLogObject(a: string | LogObject | number): a is LogObject {
+    return (a as LogObject).id !== undefined && (a as LogObject).name !== undefined;
+}
+
 export class Logger {
 
-    public static debug(logFlag: boolean, ...logObjects: Array<string | LogObject>): void {
+    public static debug(logFlag: boolean, ...logObjects: LogEntity[]): void {
         if (logFlag) {
             Logger.printLog(LogLevel.DEBUG, logObjects);
         }
     }
 
-    public static log(...logObjects: Array<string | LogObject>): void {
+    public static log(...logObjects: LogEntity[]): void {
         Logger.printLog(LogLevel.LOG, logObjects);
     }
 
-    public static error(roomName: string, ...logObjects: Array<string | LogObject>): void {
+    public static error(roomName: string, ...logObjects: LogEntity[]): void {
         Logger.printLog(LogLevel.ERROR, logObjects);
         Logger.sendNotification(roomName, logObjects);
     }
 
-    private static printLog(logLevel: LogLevel, logObjects: Array<string | LogObject>): void {
+    private static printLog(logLevel: LogLevel, logObjects: LogEntity[]): void {
         const message = Logger.buildMessage(logObjects, Logger.urlLogObjectFormatter);
         console.log(`[${Game.time}][${logLevel}] ${message}`);
     }
 
-    private static buildMessage(logObjects: Array<string | LogObject>, formatter: (a: LogObject) => string): string {
+    private static buildMessage(logObjects: LogEntity[], formatter: (a: LogObject) => string): string {
         return logObjects.map((it) => {
-            if (typeof it === 'string') {
-                return it;
-            } else {
+            if (!it) {
+                return 'null';
+            } else if (isLogObject(it)) {
                 return formatter(it);
+            } else {
+                return it;
             }
         }).join(' ');
     }
@@ -48,7 +56,7 @@ export class Logger {
         return `${logObject.name} [${logObject.id}]`;
     }
 
-    private static sendNotification(room: string, logObjects: Array<string | LogObject>): void {
+    private static sendNotification(room: string, logObjects: LogEntity[]): void {
         const error = Logger.buildMessage(logObjects, Logger.simpleLogObjectFormatter);
         const shard = Game.shard;
         const url = `https://screeps.com/a/#!/history/${shard}/${room}?t=${Game.time}`;
