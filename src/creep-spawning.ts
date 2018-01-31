@@ -5,7 +5,7 @@ import { MEMORY } from './memory';
 
 export class CreepSpawning {
 
-    private static readonly PRIORITIES = ['harvester', 'miner', 'hauler'];
+    private static readonly PRIORITIES = ['harvester', 'miner', 'hauler', 'energy-distributor'];
 
     public static execute(): void {
         const targets = COMMON.MAIN_SPAWN.memory[MEMORY.TARGETS];
@@ -30,11 +30,12 @@ export class CreepSpawning {
 
     private static spawn(role: string): void {
         const DEFINITIONS = {
-            builder: { parts: [WORK, WORK, CARRY, MOVE], name: 'Builder' },
-            harvester: { parts: [WORK, WORK, CARRY, MOVE], name: 'Harvester' },
-            hauler: { parts: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], name: 'Hauler' },
-            miner: { parts: [MOVE, WORK, WORK, WORK, WORK, WORK], name: 'Miner' },
-            worker: { parts: [WORK, WORK, CARRY, CARRY, MOVE, MOVE], name: 'Worker' },
+            'builder': { parts: [WORK, WORK, CARRY, MOVE], name: 'Builder' },
+            'energy-distributor': { parts: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], name: 'Energy Distributor' },
+            'harvester': { parts: [WORK, WORK, CARRY, MOVE], name: 'Harvester' },
+            'hauler': { parts: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], name: 'Hauler' },
+            'miner': { parts: [MOVE, WORK, WORK, WORK, WORK, WORK], name: 'Miner' },
+            'worker': { parts: [WORK, WORK, CARRY, CARRY, MOVE, MOVE], name: 'Worker' },
         };
         const definition = DEFINITIONS[role];
         COMMON.MAIN_SPAWN.spawnCreep(

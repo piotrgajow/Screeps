@@ -16,17 +16,19 @@ import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
 import { Task } from './creeps/tasks/task';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
+import { EnergyDistributor } from './creeps/energy-distributor';
 
 const MAIN_SPAWN_NAME = 'Spawn1';
 
 class CommonData {
 
     public ROLES: { [s: string]: CreepRole } = {
-        builder: Builder.prototype,
-        harvester: Harvester.prototype,
-        hauler: Hauler.prototype,
-        miner: Miner.prototype,
-        worker: Worker.prototype,
+        'builder': Builder.prototype,
+        'energy-distributor': EnergyDistributor.prototype,
+        'harvester': Harvester.prototype,
+        'hauler': Hauler.prototype,
+        'miner': Miner.prototype,
+        'worker': Worker.prototype,
     };
 
     public TASKS: { [s: string]: Task } = {
