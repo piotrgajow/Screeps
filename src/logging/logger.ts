@@ -6,9 +6,9 @@ enum LogLevel {
     ERROR = 'ERROR',
 }
 
-type LogEntity = string | LogObject | null | undefined | number;
+type LogEntity = string | LogObject | null | undefined | number | boolean;
 
-function isLogObject(a: string | LogObject | number): a is LogObject {
+function isLogObject(a: string | LogObject | number | boolean): a is LogObject {
     return (a as LogObject).id !== undefined && (a as LogObject).name !== undefined;
 }
 
@@ -36,7 +36,7 @@ export class Logger {
 
     private static buildMessage(logObjects: LogEntity[], formatter: (a: LogObject) => string): string {
         return logObjects.map((it) => {
-            if (!it) {
+            if (it === null || it === undefined) {
                 return 'null';
             } else if (isLogObject(it)) {
                 return formatter(it);

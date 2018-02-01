@@ -9,16 +9,16 @@ export class Repair extends Task {
         creep.memory[MEMORY.TARGET] = this.findStructureToRepair(creep).id;
     }
 
-    protected executeTask(creep: Creep): any {
+    protected executeTask(creep: Creep): void {
         const target = Game.getObjectById(creep.memory[MEMORY.TARGET]) as Structure;
         if (creep.repair(target) === ERR_NOT_IN_RANGE) {
             creep.moveTo(target, { visualizePathStyle: {} });
         }
-        return target;
     }
 
     protected isTaskFinished(creep: Creep, opts: any): boolean {
-        return creep.carry.energy === 0 || (opts.hits === opts.hitsMax);
+        const target = Game.getObjectById(creep.memory[MEMORY.TARGET]) as Structure;
+        return creep.carry.energy === 0 || !target || (target.hits === target.hitsMax);
     }
 
     private findStructureToRepair(creep: Creep): any {

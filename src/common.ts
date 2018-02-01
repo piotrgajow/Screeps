@@ -20,7 +20,7 @@ import { Repair } from './creeps/tasks/repair';
 import { Task } from './creeps/tasks/task';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
 
-const MAIN_SPAWN_NAME = 'Spawn1';
+export const MAIN_SPAWN_NAME = 'Spawn1';
 
 class CommonData {
 
