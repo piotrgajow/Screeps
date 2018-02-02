@@ -11,7 +11,7 @@ export class PickFromContainer extends Task<StructureContainer> {
         } else if (containers.length) {
             return selectClosest(creep.pos, containers).id;
         } else {
-            return '';
+            return 'no-target';
         }
     }
 
