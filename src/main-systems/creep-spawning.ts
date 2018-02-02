@@ -1,7 +1,6 @@
-
 import { MAIN_SPAWN_NAME } from '../common';
-import { Logger } from '../logging/logger';
 import { MEMORY } from '../enums/memory';
+import { Logger } from '../logging/logger';
 
 interface SpawnTarget {
     [role: string]: number;
@@ -36,6 +35,10 @@ export class CreepSpawning {
             'harvester': { parts: [WORK, WORK, CARRY, MOVE], name: 'Harvester' },
             'hauler': { parts: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], name: 'Hauler' },
             'miner': { parts: [MOVE, WORK, WORK, WORK, WORK, WORK], name: 'Miner' },
+            'upgrader': {
+                name: 'Upgrader',
+                parts: [CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE],
+            },
             'worker': { parts: [WORK, WORK, CARRY, CARRY, MOVE, MOVE], name: 'Worker' },
         };
         const definition = DEFINITIONS[role];
