@@ -4,6 +4,7 @@ import { EnergyDistributor } from './creeps/roles/energy-distributor';
 import { Harvester } from './creeps/roles/harvester';
 import { Hauler } from './creeps/roles/hauler';
 import { Miner } from './creeps/roles/miner';
+import { Scavenger } from './creeps/roles/scavenger';
 import { Upgrader } from './creeps/roles/upgrader';
 import { Worker } from './creeps/roles/worker';
 
@@ -20,6 +21,7 @@ import { NoOp } from './creeps/tasks/no-op';
 import { PickFromContainer } from './creeps/tasks/pick-from-container';
 import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
+import { Scavenge } from './creeps/tasks/scavenge';
 import { Upgrade } from './creeps/tasks/upgrade';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
 
@@ -33,6 +35,7 @@ class CommonData {
         'harvester': Harvester.prototype,
         'hauler': Hauler.prototype,
         'miner': Miner.prototype,
+        'scavenger': Scavenger.prototype,
         'upgrader': Upgrader.prototype,
         'worker': Worker.prototype,
     };
@@ -50,6 +53,7 @@ class CommonData {
         'pick-from-container': new PickFromContainer(),
         'pick-up-energy': new PickUpEnergy(),
         'repair': new Repair(),
+        'scavenge': new Scavenge(),
         'upgrade': new Upgrade(),
         'upgrade-controller': new UpgradeController(),
     };

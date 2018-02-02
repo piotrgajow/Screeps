@@ -35,6 +35,7 @@ export class CreepSpawning {
             'harvester': { parts: [WORK, WORK, CARRY, MOVE], name: 'Harvester' },
             'hauler': { parts: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], name: 'Hauler' },
             'miner': { parts: [MOVE, WORK, WORK, WORK, WORK, WORK], name: 'Miner' },
+            'scavenger': { parts: [CARRY, CARRY, MOVE], name: 'Scavenger' },
             'upgrader': {
                 name: 'Upgrader',
                 parts: [CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE],
