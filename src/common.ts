@@ -1,10 +1,10 @@
-import { Builder } from './creeps/builder';
+import { Builder } from './creeps/roles/builder';
 import { CreepRole } from './creeps/creep-role';
-import { EnergyDistributor } from './creeps/energy-distributor';
-import { Harvester } from './creeps/harvester';
-import { Hauler } from './creeps/hauler';
-import { Miner } from './creeps/miner';
-import { Worker } from './creeps/worker';
+import { EnergyDistributor } from './creeps/roles/energy-distributor';
+import { Harvester } from './creeps/roles/harvester';
+import { Hauler } from './creeps/roles/hauler';
+import { Miner } from './creeps/roles/miner';
+import { Worker } from './creeps/roles/worker';
 
 import { Build } from './creeps/tasks/build';
 import { ExtractEnergy } from './creeps/tasks/extract-energy';
@@ -17,7 +17,7 @@ import { NoOp } from './creeps/tasks/no-op';
 import { PickFromContainer } from './creeps/tasks/pick-from-container';
 import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
-import { Task } from './creeps/tasks/task';
+import { Task } from './creeps/task';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
 
 export const MAIN_SPAWN_NAME = 'Spawn1';

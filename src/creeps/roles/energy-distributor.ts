@@ -1,6 +1,6 @@
-import { MAIN_SPAWN_NAME } from '../common';
+import { MAIN_SPAWN_NAME } from '../../common';
 
-import { CreepRole } from './creep-role';
+import { CreepRole } from '../creep-role';
 
 export class EnergyDistributor extends CreepRole {
 

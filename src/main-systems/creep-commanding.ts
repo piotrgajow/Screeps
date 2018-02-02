@@ -1,8 +1,8 @@
-import COMMON from './common';
+import COMMON from '../common';
 
-import { CreepRole } from './creeps/creep-role';
-import { Idler } from './creeps/idler';
-import { Logger } from './logging/logger';
+import { CreepRole } from '../creeps/creep-role';
+import { Idler } from '../creeps/roles/idler';
+import { Logger } from '../logging/logger';
 
 export class CreepCommanding {
 

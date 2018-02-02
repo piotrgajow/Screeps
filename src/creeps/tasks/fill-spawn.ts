@@ -1,6 +1,6 @@
 import { MAIN_SPAWN_NAME } from '../../common';
 
-import { Task } from './task';
+import { Task } from '../task';
 
 export class FillSpawn extends Task {
 

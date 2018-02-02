@@ -1,7 +1,7 @@
 
-import { MAIN_SPAWN_NAME } from './common';
-import { Logger } from './logging/logger';
-import { MEMORY } from './memory';
+import { MAIN_SPAWN_NAME } from '../common';
+import { Logger } from '../logging/logger';
+import { MEMORY } from '../enums/memory';
 
 interface SpawnTarget {
     [role: string]: number;

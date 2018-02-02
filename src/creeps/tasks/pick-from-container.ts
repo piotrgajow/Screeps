@@ -1,9 +1,9 @@
 
 import { Logger } from '../../logging/logger';
-import { MEMORY } from '../../memory';
+import { MEMORY } from '../../enums/memory';
 import { isContainer } from '../../structure-filters';
 
-import { Task } from './task';
+import { Task } from '../task';
 
 export class PickFromContainer extends Task {
 

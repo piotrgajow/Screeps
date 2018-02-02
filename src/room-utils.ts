@@ -1,4 +1,4 @@
-import { MEMORY } from './memory';
+import { MEMORY } from './enums/memory';
 
 function isStorage(structure: Structure): boolean {
     return structure.structureType === STRUCTURE_STORAGE;

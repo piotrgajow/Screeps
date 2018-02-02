@@ -1,10 +1,10 @@
 import { Logger } from '../../logging/logger';
-import { MEMORY } from '../../memory';
+import { MEMORY } from '../../enums/memory';
 import { ROOM } from '../../room-utils';
 
 import { isContainer } from '../../structure-filters';
 
-import { Task } from './task';
+import { Task } from '../task';
 
 export class PickUpEnergy extends Task {
 

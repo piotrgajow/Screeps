@@ -1,6 +1,6 @@
-import { ROOM } from '../room-utils';
+import { ROOM } from '../../room-utils';
 
-import { CreepRole } from './creep-role';
+import { CreepRole } from '../creep-role';
 
 export class Builder extends CreepRole {
 

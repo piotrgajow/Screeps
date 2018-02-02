@@ -1,7 +1,7 @@
 import { Logger } from '../../logging/logger';
 import { ROOM } from '../../room-utils';
 
-import { Task } from './task';
+import { Task } from '../task';
 
 export class FillStorage extends Task {
 

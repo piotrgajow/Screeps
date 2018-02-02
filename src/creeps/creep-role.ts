@@ -1,6 +1,6 @@
 import COMMON from '../common';
 import { Logger } from '../logging/logger';
-import { MEMORY } from '../memory';
+import { MEMORY } from '../enums/memory';
 import { LogObject } from '../logging/log-object';
 
 export abstract class CreepRole {

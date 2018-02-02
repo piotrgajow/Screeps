@@ -1,4 +1,4 @@
-import { Task } from './task';
+import { Task } from '../task';
 
 export class UpgradeController extends Task {
 

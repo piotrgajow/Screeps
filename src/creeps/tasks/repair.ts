@@ -1,7 +1,7 @@
-import { MEMORY } from '../../memory';
+import { MEMORY } from '../../enums/memory';
 import { ROOM } from '../../room-utils';
 
-import { Task } from './task';
+import { Task } from '../task';
 
 export class Repair extends Task {
 

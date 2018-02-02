@@ -1,5 +1,5 @@
-import { Logger } from '../../logging/logger';
-import { MEMORY } from '../../memory';
+import { Logger } from '../logging/logger';
+import { MEMORY } from '../enums/memory';
 
 export abstract class Task {
 

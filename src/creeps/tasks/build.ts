@@ -1,6 +1,6 @@
-import { MEMORY } from '../../memory';
+import { MEMORY } from '../../enums/memory';
 
-import { Task } from './task';
+import { Task } from '../task';
 
 export class Build extends Task {
 

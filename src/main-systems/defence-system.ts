@@ -1,4 +1,4 @@
-import { isTower } from './structure-filters';
+import { isTower } from '../structure-filters';
 
 export class DefenceSystem {
 

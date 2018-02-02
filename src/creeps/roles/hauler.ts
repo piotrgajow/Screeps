@@ -1,4 +1,4 @@
-import { CreepRole } from './creep-role';
+import { CreepRole } from '../creep-role';
 
 export class Hauler extends CreepRole {
 
