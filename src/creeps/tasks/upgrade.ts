@@ -23,7 +23,7 @@ export class Upgrade extends Task<Flag> {
     protected executeTask(creep: Creep, target: Flag): void {
         if (target.pos.isEqualTo(creep.pos)) {
             if (creep.carry.energy > 0) {
-                creep.upgradeController(creep.room.controller);
+                creep.upgradeController(creep.room.controller as StructureController);
             }
         } else {
             creep.moveTo(target, { visualizePathStyle: {} });

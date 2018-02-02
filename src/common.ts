@@ -14,6 +14,7 @@ import { FillExtensions } from './creeps/tasks/fill-extensions';
 import { FillSpawn } from './creeps/tasks/fill-spawn';
 import { FillStorage } from './creeps/tasks/fill-storage';
 import { FillTower } from './creeps/tasks/fill-tower';
+import { FillUpgrader } from './creeps/tasks/fill-upgrader';
 import { Mine } from './creeps/tasks/mine';
 import { NoOp } from './creeps/tasks/no-op';
 import { PickFromContainer } from './creeps/tasks/pick-from-container';
@@ -36,13 +37,14 @@ class CommonData {
         'worker': Worker.prototype,
     };
 
-    public TASKS: { [s: string]: Task } = {
+    public TASKS: { [s: string]: Task<any> } = {
         'build': new Build(),
         'extract-energy': new ExtractEnergy(),
         'fill-extensions': new FillExtensions(),
         'fill-spawn': new FillSpawn(),
         'fill-storage': new FillStorage(),
         'fill-tower': new FillTower(),
+        'fill-upgrader': new FillUpgrader(),
         'mine': new Mine(),
         'no-op': new NoOp(),
         'pick-from-container': new PickFromContainer(),
