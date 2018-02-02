@@ -19,6 +19,7 @@ import { NoOp } from './creeps/tasks/no-op';
 import { PickFromContainer } from './creeps/tasks/pick-from-container';
 import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
+import { Upgrade } from './creeps/tasks/upgrade';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
 
 export const MAIN_SPAWN_NAME = 'Spawn1';
@@ -47,6 +48,7 @@ class CommonData {
         'pick-from-container': new PickFromContainer(),
         'pick-up-energy': new PickUpEnergy(),
         'repair': new Repair(),
+        'upgrade': new Upgrade(),
         'upgrade-controller': new UpgradeController(),
     };
 
