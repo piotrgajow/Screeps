@@ -1,11 +1,13 @@
-import { Builder } from './creeps/roles/builder';
 import { CreepRole } from './creeps/creep-role';
+import { Builder } from './creeps/roles/builder';
 import { EnergyDistributor } from './creeps/roles/energy-distributor';
 import { Harvester } from './creeps/roles/harvester';
 import { Hauler } from './creeps/roles/hauler';
 import { Miner } from './creeps/roles/miner';
+import { Upgrader } from './creeps/roles/upgrader';
 import { Worker } from './creeps/roles/worker';
 
+import { Task } from './creeps/task';
 import { Build } from './creeps/tasks/build';
 import { ExtractEnergy } from './creeps/tasks/extract-energy';
 import { FillExtensions } from './creeps/tasks/fill-extensions';
@@ -17,7 +19,6 @@ import { NoOp } from './creeps/tasks/no-op';
 import { PickFromContainer } from './creeps/tasks/pick-from-container';
 import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
-import { Task } from './creeps/task';
 import { UpgradeController } from './creeps/tasks/upgrade-controller';
 
 export const MAIN_SPAWN_NAME = 'Spawn1';
@@ -30,6 +31,7 @@ class CommonData {
         'harvester': Harvester.prototype,
         'hauler': Hauler.prototype,
         'miner': Miner.prototype,
+        'upgrader': Upgrader.prototype,
         'worker': Worker.prototype,
     };
 
