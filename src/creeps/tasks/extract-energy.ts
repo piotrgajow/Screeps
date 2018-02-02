@@ -1,50 +1,21 @@
-import { MEMORY } from '../../enums/memory';
-
 import { Task } from '../task';
 
-export class ExtractEnergy extends Task {
+export class ExtractEnergy extends Task<Source> {
 
-    public initialize(creep: Creep): void {
-        let source = creep.room.find(FIND_SOURCES)[0];
-        if (source.energy === 0) {
-            source = creep.room.find(FIND_SOURCES)[1];
-        }
-        creep.memory[MEMORY.TARGET] = source.id;
+    protected findTargetId(creep: Creep): string {
+        const source = creep.pos.findClosestByPath(FIND_SOURCES) as Source;
+        return source.id;
     }
 
-    protected executeTask(creep: Creep): void {
-        const source = Game.getObjectById(creep.memory[MEMORY.TARGET]) as Source;
-        if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(source, { visualizePathStyle: {} });
+    protected executeTask(creep: Creep, target: Source): void {
+        if (target) {
+            if (creep.harvest(target) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(target, { visualizePathStyle: {} });
+            }
         }
     }
 
-    protected isTaskFinished(creep: Creep): boolean {
-        return creep.carry.energy === creep.carryCapacity;
+    protected isTaskFinished(creep: Creep, target: Source): boolean {
+        return creep.carry.energy === creep.carryCapacity || !target;
     }
 }
-
-//export function initialize(creep: Creep): void {
-//    creep.memory[MEMORY_PATH] = findSourcePath(creep);
-//    execute(creep);
-//}
-
-//interface PathFinderGoal {
-//    pos: RoomPosition;
-//    range: number;
-//}
-//
-//function findSourcePath(creep: Creep): PathFinderPath {
-//    const sources: Source[] = creep.room.find(FIND_SOURCES);
-//    const sourcesWithEnergy = sources.filter((source) => source.energy > 0);
-//    const goals = sourcesWithEnergy.map((source) => positionToGoal(source.pos, 1));
-//    const result = PathFinder.search(creep.pos, goals);
-//    return result;
-//}
-//
-//function positionToGoal(position: RoomPosition, targetRange: number): PathFinderGoal {
-//    return {
-//        pos: position,
-//        range: targetRange,
-//    } as PathFinderGoal;
-//}

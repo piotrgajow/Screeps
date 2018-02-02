@@ -1,51 +1,52 @@
 
-import { Logger } from '../../logging/logger';
-import { MEMORY } from '../../enums/memory';
-import { isContainer } from '../../structure-filters';
-
 import { Task } from '../task';
 
-export class PickFromContainer extends Task {
+export class PickFromContainer extends Task<StructureContainer> {
 
-    private readonly FILL_THRESHOLD = 1000;
-
-    public initialize(creep: Creep): void {
-        creep.memory[MEMORY.TARGET] = this.findContainerId(creep);
-    }
-
-    protected executeTask(creep: Creep): any {
-        const container = Game.getObjectById(creep.memory[MEMORY.TARGET]) as StructureContainer;
-        if (!container) {
-            return {};
-        }
-
-        if (creep.withdraw(container, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(container, { visualizePathStyle: {} });
-        }
-        return { container };
-    }
-
-    protected isTaskFinished(creep: Creep, opts: any): boolean {
-        const isCreepFull = creep.carry.energy === creep.carryCapacity;
-        const isContainerEmpty = opts.container && opts.container.store.energy === 0;
-        return isCreepFull || isContainerEmpty;
-    }
-
-    private findContainerId(creep: Creep): string {
-        const containers = creep.room.find(FIND_STRUCTURES, { filter: isContainer } ) as StructureContainer[];
-        const filled = _.filter(containers, (it) => it.store.energy > this.FILL_THRESHOLD);
+    protected findTargetId(creep: Creep): string {
+        const containers = creep.room.find(FIND_STRUCTURES, { filter: containersWithEnergy });
+        const filled = _.filter(containers, filledWithEnergy);
         if (filled.length) {
-            return PickFromContainer.selectClosest(creep.pos, filled).id;
+            return selectClosest(creep.pos, filled).id;
         } else if (containers.length) {
-            return PickFromContainer.selectClosest(creep.pos, containers).id;
+            return selectClosest(creep.pos, containers).id;
         } else {
-            Logger.error(creep.room.name, 'No container to get energy from for creep', creep);
             return '';
         }
     }
 
-    private static selectClosest(position: RoomPosition, objects: any): any {
-        return position.findClosestByRange(objects);
+    protected executeTask(creep: Creep, target: StructureContainer): any {
+        if (target) {
+            if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(target, { visualizePathStyle: {} });
+            }
+        }
     }
 
+    protected isTaskFinished(creep: Creep, target: StructureContainer): boolean {
+        const isCreepFull = creep.carry.energy === creep.carryCapacity;
+        const isContainerEmpty = target && target.store.energy === 0;
+        return isCreepFull || isContainerEmpty;
+    }
+
+}
+
+const HIGH_THRESHOLD = 1000;
+const LOW_THRESHOLD = 100;
+
+function containersWithEnergy(structure: Structure): boolean {
+    if (structure.structureType === STRUCTURE_CONTAINER) {
+        const container = structure as StructureContainer;
+        return container.store.energy > LOW_THRESHOLD;
+    } else {
+        return false;
+    }
+}
+
+function filledWithEnergy(container: StructureContainer): boolean {
+    return container.store.energy > HIGH_THRESHOLD;
+}
+
+function selectClosest(position: RoomPosition, objects: any): any {
+    return position.findClosestByRange(objects);
 }

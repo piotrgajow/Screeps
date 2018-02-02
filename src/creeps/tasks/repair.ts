@@ -1,30 +1,27 @@
-import { MEMORY } from '../../enums/memory';
-import { ROOM } from '../../room-utils';
-
 import { Task } from '../task';
 
-export class Repair extends Task {
+export class Repair extends Task<Structure> {
 
-    public initialize(creep: Creep): void {
-        creep.memory[MEMORY.TARGET] = this.findStructureToRepair(creep).id;
+    protected findTargetId(creep: Creep): string {
+        const structures = creep.room.find(FIND_STRUCTURES, { filter: damagedStructures });
+        const target = _.min(structures, (it) => it.hits);
+        return target ? target.id : '';
     }
 
-    protected executeTask(creep: Creep): void {
-        const target = Game.getObjectById(creep.memory[MEMORY.TARGET]) as Structure;
-        if (creep.repair(target) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, { visualizePathStyle: {} });
+    protected executeTask(creep: Creep, target: Structure): void {
+        if (target) {
+            if (creep.repair(target) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(target, { visualizePathStyle: {} });
+            }
         }
     }
 
-    protected isTaskFinished(creep: Creep, opts: any): boolean {
-        const target = Game.getObjectById(creep.memory[MEMORY.TARGET]) as Structure;
+    protected isTaskFinished(creep: Creep, target: Structure): boolean {
         return creep.carry.energy === 0 || !target || (target.hits === target.hitsMax);
     }
 
-    private findStructureToRepair(creep: Creep): any {
-        const structures = ROOM.findStructures(creep.room);
-        const damagedStructures = structures.filter((structure) => structure.hits < structure.hitsMax);
-        return _.min(damagedStructures, (it) => it.hits);
-    }
+}
 
+function damagedStructures(structure: Structure): boolean {
+    return structure.hits < structure.hitsMax;
 }

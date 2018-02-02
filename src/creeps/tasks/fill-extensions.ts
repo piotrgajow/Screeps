@@ -1,17 +1,13 @@
 import { Task } from '../task';
 
-import { ROOM } from '../../room-utils';
+export class FillExtensions extends Task<StructureExtension> {
 
-export class FillExtensions extends Task {
-
-    public initialize(creep: Creep): void {
+    protected findTargetId(creep: Creep): string {
+        const target = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, { filter: notFullExtension });
+        return target ? target.id : '';
     }
 
-    protected executeTask(creep: Creep): any {
-        const target = ROOM.findExtensions(creep.room).find((extension) => {
-            return extension.energy < extension.energyCapacity;
-        });
-
+    protected executeTask(creep: Creep, target: StructureExtension): void {
         if (target) {
             if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
                 creep.moveTo(target, { visualizePathStyle: {} });
@@ -19,8 +15,17 @@ export class FillExtensions extends Task {
         }
     }
 
-    protected isTaskFinished(creep: Creep, target: any): boolean {
-        return creep.carry.energy === 0 || !target;
+    protected isTaskFinished(creep: Creep, target: StructureExtension): boolean {
+        return creep.carry.energy === 0 || !target || target.energy === target.energyCapacity;
     }
 
+}
+
+function notFullExtension(structure: Structure): boolean {
+    if (structure.structureType === STRUCTURE_EXTENSION) {
+        const extension = structure as StructureExtension;
+        return extension.energy < extension.energyCapacity;
+    } else {
+        return false;
+    }
 }

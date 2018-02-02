@@ -59,7 +59,7 @@ export class Logger {
     private static sendNotification(room: string, logObjects: LogEntity[]): void {
         const error = Logger.buildMessage(logObjects, Logger.simpleLogObjectFormatter);
         const shard = Game.shard;
-        const url = `https://screeps.com/a/#!/history/${shard}/${room}?t=${Game.time}`;
+        const url = `https://screeps.com/a/#!/history/${shard.name}/${room}?t=${Game.time}`;
         const message = `<a href="${url}">[${Game.time}] Error occurred: ${error}</a>`;
         Game.notify(message, 15);
     }

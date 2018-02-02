@@ -1,17 +1,22 @@
 import { Task } from '../task';
 
-export class UpgradeController extends Task {
+export class UpgradeController extends Task<StructureController> {
 
-    public initialize(creep: Creep): void {
+    protected findTargetId(creep: Creep): string {
+        return creep.room.name;
     }
 
-    protected executeTask(creep: Creep): void {
-        if (creep.upgradeController(creep.room.controller as StructureController) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(creep.room.controller as StructureController, { visualizePathStyle: {} });
+    protected getTarget(id: string): StructureController {
+        return Game.rooms[id].controller as StructureController;
+    }
+
+    protected executeTask(creep: Creep, target: StructureController): void {
+        if (creep.upgradeController(target) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 
-    protected isTaskFinished(creep: Creep): boolean {
+    protected isTaskFinished(creep: Creep, target: StructureController): boolean {
         return creep.carry.energy === 0;
     }
 

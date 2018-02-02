@@ -1,28 +1,25 @@
-import { Logger } from '../../logging/logger';
-import { ROOM } from '../../room-utils';
-
 import { Task } from '../task';
 
-export class FillStorage extends Task {
+export class FillStorage extends Task<StructureStorage> {
 
-    public initialize(creep: Creep): void {
+    protected findTargetId(creep: Creep): string {
+        const storage = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, { filter: isStorage }) as StructureStorage;
+        return storage ? storage.id : '';
     }
 
-    protected executeTask(creep: Creep): object {
-        const storage = ROOM.findStorage(creep.room);
-        if (!storage) {
-            Logger.error(creep.room.name, 'No storage in room');
-            return {};
+    protected executeTask(creep: Creep, target: StructureStorage): void {
+        if (target) {
+            if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(target, { visualizePathStyle: {} });
+            }
         }
-
-        if (creep.transfer(storage, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(storage, { visualizePathStyle: {} });
-        }
-        return {};
     }
 
-    protected isTaskFinished(creep: Creep, opts: object): boolean {
-        const creepHasNoMoreEnergy = creep.carry.energy === 0;
-        return creepHasNoMoreEnergy;
+    protected isTaskFinished(creep: Creep, target: StructureStorage): boolean {
+        return creep.carry.energy === 0;
     }
+}
+
+function isStorage(structure: Structure): boolean {
+    return structure.structureType === STRUCTURE_STORAGE;
 }

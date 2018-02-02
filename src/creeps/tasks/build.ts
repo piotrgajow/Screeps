@@ -1,23 +1,22 @@
-import { MEMORY } from '../../enums/memory';
-
 import { Task } from '../task';
 
-export class Build extends Task {
+export class Build extends Task<ConstructionSite> {
 
-    public initialize(creep: Creep): void {
-        creep.memory[MEMORY.TARGET] = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES).id;
+    protected findTargetId(creep: Creep): string {
+        const target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+        return target ? target.id : '';
     }
 
-    protected executeTask(creep: Creep): void {
-        const target = Game.getObjectById(creep.memory[MEMORY.TARGET]) as ConstructionSite;
-        if (creep.build(target) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, { visualizePathStyle: {} });
+    protected executeTask(creep: Creep, target: ConstructionSite): void {
+        if (target) {
+            if (creep.build(target) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(target, { visualizePathStyle: {} });
+            }
         }
     }
 
-    protected isTaskFinished(creep: Creep): boolean {
-        const targetIsNull = Game.getObjectById(creep.memory[MEMORY.TARGET]) === null;
-        return creep.carry.energy === 0 || targetIsNull;
+    protected isTaskFinished(creep: Creep, target: ConstructionSite): boolean {
+        return creep.carry.energy === 0 || !target;
     }
 
 }

@@ -1,8 +1,12 @@
 import { Task } from '../task';
 
-export class NoOp extends Task {
+export class NoOp extends Task<void> {
 
-    public initialize(creep: Creep): void {
+    protected findTargetId(creep: Creep): string {
+        return 'no-target';
+    }
+
+    protected getTarget(id: string): void {
         return;
     }
 
@@ -10,7 +14,7 @@ export class NoOp extends Task {
         return;
     }
 
-    protected isTaskFinished(creep: Creep, opts: any): boolean {
+    protected isTaskFinished(creep: Creep): boolean {
         return true;
     }
 
