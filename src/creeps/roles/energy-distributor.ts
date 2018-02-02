@@ -14,7 +14,7 @@ export class EnergyDistributor extends CreepRole {
             return 'fill-extensions';
         } else if (this.creep.room.find(FIND_MY_STRUCTURES, { filter: isNotFullTower }).length) {
             return 'fill-tower';
-        } else if (this.creep.room.find(FIND_MY_CREEPS, { filter: upgraderLowOnEnergy })) {
+        } else if (this.creep.room.find(FIND_MY_CREEPS, { filter: upgraderLowOnEnergy }).length) {
             return 'fill-upgrader';
         } else {
             return 'no-op';
