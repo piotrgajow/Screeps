@@ -4,6 +4,14 @@ This is my code for running [Screeps](https://screeps.com/) - an open-source san
 
 Code is written in [TypeScript](https://www.typescriptlang.org/) and was based on [Screeps Typescript Starter](https://github.com/screepers/screeps-typescript-starter).
 
+## Usage
+
+To upload the code onto Screeps account you should:
+ 1. Copy `screeps.sample.json` file and rename it to `screeps.json`.
+ 2. Replace value of `token` property inside the file to the value of your [Screeps token](https://screeps.com/a/#!/account/auth-tokens).
+ 3. Execute `npm run push-main` or `npm run push-test` to upload code into Screeps main or test branch respectively.
+ 4. Switch to the branch in Screeps.
+
 ## Organization
 
 Main code loop consists of executing 4 modules:
