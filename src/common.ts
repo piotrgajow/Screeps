@@ -6,7 +6,6 @@ import { Hauler } from './creeps/roles/hauler';
 import { Miner } from './creeps/roles/miner';
 import { Scavenger } from './creeps/roles/scavenger';
 import { Upgrader } from './creeps/roles/upgrader';
-import { Worker } from './creeps/roles/worker';
 
 import { Task } from './creeps/task';
 import { Build } from './creeps/tasks/build';
@@ -37,7 +36,6 @@ class CommonData {
         'miner': Miner.prototype,
         'scavenger': Scavenger.prototype,
         'upgrader': Upgrader.prototype,
-        'worker': Worker.prototype,
     };
 
     public TASKS: { [s: string]: Task<any> } = {
