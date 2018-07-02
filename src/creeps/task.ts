@@ -6,7 +6,7 @@ export abstract class Task<T> {
     public initialize(creep: Creep): void {
         const targetId = this.findTargetId(creep);
         if (!targetId) {
-            Logger.error(creep.room.name, 'No target found for', creep);
+            Logger.warning('No target found for', creep);
         }
         creep.memory[MEMORY.TARGET] = targetId;
     }

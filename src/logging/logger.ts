@@ -4,6 +4,7 @@ enum LogLevel {
     DEBUG = 'DEBUG',
     LOG = 'LOG',
     ERROR = 'ERROR',
+    WARNING = 'WARNING',
 }
 
 type LogEntity = string | LogObject | null | undefined | number | boolean;
@@ -22,6 +23,10 @@ export class Logger {
 
     public static log(...logObjects: LogEntity[]): void {
         Logger.printLog(LogLevel.LOG, logObjects);
+    }
+
+    public static warning(...logObjects: LogEntity[]): void {
+        Logger.printLog(LogLevel.WARNING, logObjects);
     }
 
     public static error(roomName: string, ...logObjects: LogEntity[]): void {
