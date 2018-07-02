@@ -10,6 +10,12 @@ export class CreepSpawning {
 
     public static execute(): void {
         const spawnOrder = Game.spawns[MAIN_SPAWN_NAME].memory[MEMORY.SPAWN_ORDER];
+
+        if (!spawnOrder) {
+            Logger.log(Game.spawns[MAIN_SPAWN_NAME].room.name, 'Spawn order not specified!');
+            return;
+        }
+
         const existingCreepCount = CreepSpawning.countExistingCreeps();
         Logger.debug(Game.spawns[MAIN_SPAWN_NAME].memory[MEMORY.DEBUG], 'Targets:', JSON.stringify(spawnOrder));
         Logger.debug(
@@ -40,7 +46,7 @@ export class CreepSpawning {
                 name: 'Upgrader',
                 parts: [CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE],
             },
-            'worker': { parts: [WORK, WORK, CARRY, CARRY, MOVE, MOVE], name: 'Worker' },
+            'worker': { parts: [WORK, WORK, CARRY, MOVE], name: 'Worker' },
         };
         const definition = DEFINITIONS[role];
         Game.spawns[MAIN_SPAWN_NAME].spawnCreep(

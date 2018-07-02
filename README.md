@@ -42,6 +42,10 @@ Task is used to decide what creep should do. When task is assigned to a creep it
 
 The existing roles are:
 
+### Worker
+
+Starter role. Will harvest energy from souce and fill spawn, build, fill extensions and upgrade controller.
+
 ### Builder
 
 Used to build and maintain constructions. Will pick up energy from storage, build new constructions and then repair existing ones.
