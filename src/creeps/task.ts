@@ -12,7 +12,8 @@ export abstract class Task<T> {
     }
 
     public execute(creep: Creep): void {
-        const target = this.getTarget(creep);
+        const targetId = creep.memory[MEMORY.TARGET];
+        const target = this.getTarget(targetId);
         this.executeTask(creep, target);
         if (this.isTaskFinished(creep, target)) {
             Logger.debug(creep.memory[MEMORY.DEBUG], creep, '- Task finished');
@@ -27,9 +28,8 @@ export abstract class Task<T> {
 
     protected abstract isTaskFinished(creep: Creep, target: T): boolean;
 
-    private getTarget(creep: Creep): T {
-        const targetId = creep.memory[MEMORY.TARGET];
-        return Game.getObjectById(targetId) as T;
+    private getTarget(id: string): T {
+        return Game.getObjectById(id) as T;
     }
 
 }
