@@ -1,5 +1,6 @@
-import { Task } from '../task';
 import { Logger } from '../../logging/logger';
+
+import { Task } from '../task';
 
 export class ExtractEnergy extends Task<Source> {
 

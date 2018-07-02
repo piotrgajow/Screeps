@@ -21,4 +21,3 @@ function towerDefendSpawn(spawn: StructureSpawn, tower: StructureTower): void {
         tower.attack(closestEnemy);
     }
 }
-

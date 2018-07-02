@@ -7,4 +7,3 @@ export class Miner extends CreepRole {
     }
 
 }
-
