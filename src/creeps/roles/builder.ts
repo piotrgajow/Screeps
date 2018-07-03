@@ -1,6 +1,6 @@
 
-import { findConstructionSites } from '../../rooms/finders';
-import { hasNoEnergy } from '../../rooms/utilities';
+import { findConstructionSites } from '../../utilities/room-finders';
+import { hasNoEnergy } from '../../utilities/utilities';
 
 import { CreepRole } from '../creep-role';
 

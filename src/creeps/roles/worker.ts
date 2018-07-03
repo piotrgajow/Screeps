@@ -1,6 +1,6 @@
 import { MAIN_SPAWN_NAME } from '../../common';
-import { findConstructionSites, findNotFullExtensions } from '../../rooms/finders';
-import { hasNoEnergy, isNotFull } from '../../rooms/utilities';
+import { findConstructionSites, findNotFullExtensions } from '../../utilities/room-finders';
+import { hasNoEnergy, isNotFull } from '../../utilities/utilities';
 
 import { CreepRole } from '../creep-role';
 

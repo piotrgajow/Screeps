@@ -1,11 +1,11 @@
-import { upgraderLowOnEnergy } from '../roles/energy-distributor';
+import { isLowOnEnergyUpgrader } from '../../utilities/utilities';
 
 import { Task } from '../task';
 
 export class FillUpgrader extends Task<Creep> {
 
     protected findTargetId(creep: Creep): string {
-        const target = creep.pos.findClosestByPath(FIND_MY_CREEPS, { filter: upgraderLowOnEnergy });
+        const target = creep.pos.findClosestByPath(FIND_MY_CREEPS, { filter: isLowOnEnergyUpgrader });
         return target ? target.id : '';
     }
 

@@ -1,4 +1,4 @@
-import { creepIsNotFull } from '../../rooms/utilities';
+import { creepIsNotFull } from '../../utilities/utilities';
 
 import { CreepRole } from '../creep-role';
 
