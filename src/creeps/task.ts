@@ -22,14 +22,14 @@ export abstract class Task<T> {
         }
     }
 
+    protected getTarget(id: string): T {
+        return Game.getObjectById(id) as T;
+    }
+
     protected abstract findTargetId(creep: Creep): string;
 
     protected abstract executeTask(creep: Creep, target: T): void;
 
     protected abstract isTaskFinished(creep: Creep, target: T): boolean;
-
-    private getTarget(id: string): T {
-        return Game.getObjectById(id) as T;
-    }
 
 }
