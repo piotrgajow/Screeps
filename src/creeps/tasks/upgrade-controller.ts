@@ -1,3 +1,5 @@
+import { isEmpty } from '../../utilities/creep-utilities';
+
 import { Task } from '../task';
 
 export class UpgradeController extends Task<StructureController> {
@@ -17,7 +19,7 @@ export class UpgradeController extends Task<StructureController> {
     }
 
     protected isTaskFinished(creep: Creep, target: StructureController): boolean {
-        return creep.carry.energy === 0;
+        return isEmpty(creep);
     }
 
 }

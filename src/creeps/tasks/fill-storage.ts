@@ -1,9 +1,12 @@
+import { isEmpty } from '../../utilities/creep-utilities';
+import { findClosestStorage } from '../../utilities/position-finders';
+
 import { Task } from '../task';
 
 export class FillStorage extends Task<StructureStorage> {
 
     protected findTargetId(creep: Creep): string {
-        const storage = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, { filter: isStorage }) as StructureStorage;
+        const storage = findClosestStorage(creep.pos);
         return storage ? storage.id : '';
     }
 
@@ -16,10 +19,6 @@ export class FillStorage extends Task<StructureStorage> {
     }
 
     protected isTaskFinished(creep: Creep, target: StructureStorage): boolean {
-        return creep.carry.energy === 0;
+        return isEmpty(creep);
     }
-}
-
-function isStorage(structure: Structure): boolean {
-    return structure.structureType === STRUCTURE_STORAGE;
 }

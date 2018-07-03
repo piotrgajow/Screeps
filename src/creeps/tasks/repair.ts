@@ -1,9 +1,13 @@
+import { isEmpty } from '../../utilities/creep-utilities';
+import { findDamagedStructures } from '../../utilities/room-finders';
+import { isIntact } from '../../utilities/structure-utilities';
+
 import { Task } from '../task';
 
 export class Repair extends Task<Structure> {
 
     protected findTargetId(creep: Creep): string {
-        const structures = creep.room.find(FIND_STRUCTURES, { filter: damagedStructures });
+        const structures = findDamagedStructures(creep.room);
         const target = _.min(structures, (it) => it.hits);
         return target ? target.id : '';
     }
@@ -17,11 +21,7 @@ export class Repair extends Task<Structure> {
     }
 
     protected isTaskFinished(creep: Creep, target: Structure): boolean {
-        return creep.carry.energy === 0 || !target || (target.hits === target.hitsMax);
+        return isEmpty(creep) || !target || isIntact(target);
     }
 
-}
-
-function damagedStructures(structure: Structure): boolean {
-    return structure.hits < structure.hitsMax;
 }

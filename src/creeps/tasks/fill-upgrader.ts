@@ -1,11 +1,12 @@
-import { isLowOnEnergyUpgrader } from '../../utilities/utilities';
+import { isEmpty, isFull } from '../../utilities/creep-utilities';
+import { findClosestLowOnEnergyUpgrader } from '../../utilities/position-finders';
 
 import { Task } from '../task';
 
 export class FillUpgrader extends Task<Creep> {
 
     protected findTargetId(creep: Creep): string {
-        const target = creep.pos.findClosestByPath(FIND_MY_CREEPS, { filter: isLowOnEnergyUpgrader });
+        const target = findClosestLowOnEnergyUpgrader(creep.pos);
         return target ? target.id : '';
     }
 
@@ -18,7 +19,7 @@ export class FillUpgrader extends Task<Creep> {
     }
 
     protected isTaskFinished(creep: Creep, target: Creep): boolean {
-        return creep.carry.energy === 0 || !target || target.carry.energy === target.carryCapacity;
+        return isEmpty(creep) || !target || isFull(target);
     }
 
 }

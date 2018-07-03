@@ -1,16 +1,13 @@
-import { Logger } from '../../logging/logger';
+import { isFull } from '../../utilities/creep-utilities';
+import { findClosestSource } from '../../utilities/position-finders';
 
 import { Task } from '../task';
 
 export class ExtractEnergy extends Task<Source> {
 
     protected findTargetId(creep: Creep): string {
-        const source = creep.pos.findClosestByPath(FIND_SOURCES) as Source;
-        if (!source) {
-            Logger.log(creep.room.name, 'No available source found');
-            return '';
-        }
-        return source.id;
+        const source = findClosestSource(creep.pos);
+        return source ? source.id : '';
     }
 
     protected executeTask(creep: Creep, target: Source): void {
@@ -22,6 +19,7 @@ export class ExtractEnergy extends Task<Source> {
     }
 
     protected isTaskFinished(creep: Creep, target: Source): boolean {
-        return creep.carry.energy === creep.carryCapacity || !target;
+        return isFull(creep) || !target;
     }
+
 }

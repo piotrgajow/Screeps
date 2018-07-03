@@ -1,5 +1,5 @@
+import { hasSomeEnergy } from '../../utilities/creep-utilities';
 import { findDroppedEnergy } from '../../utilities/room-finders';
-import { hasSomeEnergy } from '../../utilities/utilities';
 
 import { CreepRole } from '../creep-role';
 

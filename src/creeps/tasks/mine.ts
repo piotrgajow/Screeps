@@ -1,19 +1,12 @@
 import { MEMORY } from '../../enums/memory';
+import { findClosestNotOccupiedMine } from '../../utilities/position-finders';
 
 import { Task } from '../task';
 
 export class Mine extends Task<Flag> {
 
     protected findTargetId(creep: Creep): string {
-        const mines = getAllMines();
-        const minerCreeps = findMinerCreeps();
-        const validMines = _.filter(mines, (mineFlagName) => {
-            return _.every(minerCreeps, (c) => {
-                return c.memory[MEMORY.TARGET] !== mineFlagName;
-            }) ;
-        });
-        const validMineFlags = _.map(validMines, (mineName) => Game.flags[mineName]);
-        return creep.pos.findClosestByPath(validMineFlags).name;
+        return findClosestNotOccupiedMine(creep.pos).name;
     }
 
     protected getTarget(id: string): Flag {
@@ -33,13 +26,4 @@ export class Mine extends Task<Flag> {
         return false;
     }
 
-}
-
-function findMinerCreeps(): Creep[] {
-    return _.filter(_.values(Game.creeps), (creep) => creep.memory[MEMORY.ROLE] === 'miner');
-}
-
-function getAllMines(): string[] {
-    const mineFlags = _.filter(Game.flags, (flag) => flag.name.includes('mine'));
-    return _.map(mineFlags, (flag) => flag.name);
 }

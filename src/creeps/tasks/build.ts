@@ -1,9 +1,12 @@
+import { isEmpty } from '../../utilities/creep-utilities';
+import { findClosestConstructionSite } from '../../utilities/position-finders';
+
 import { Task } from '../task';
 
 export class Build extends Task<ConstructionSite> {
 
     protected findTargetId(creep: Creep): string {
-        const target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+        const target = findClosestConstructionSite(creep.pos);
         return target ? target.id : '';
     }
 
@@ -16,7 +19,7 @@ export class Build extends Task<ConstructionSite> {
     }
 
     protected isTaskFinished(creep: Creep, target: ConstructionSite): boolean {
-        return creep.carry.energy === 0 || !target;
+        return isEmpty(creep) || !target;
     }
 
 }

@@ -1,4 +1,5 @@
-import { isLowOnEnergyUpgrader, isNotFullExtension, isNotFullTower } from './utilities';
+import { isLowOnEnergyUpgrader } from './creep-utilities';
+import { isDamaged, isNotFullExtension, isNotFullTower } from './structure-utilities';
 
 export function findConstructionSites(room: Room): ConstructionSite[] {
     return room.find(FIND_MY_CONSTRUCTION_SITES);
@@ -18,4 +19,8 @@ export function findNotFullExtensions(room: Room): StructureExtension[] {
 
 export function findDroppedEnergy(room: Room): Array<Resource<RESOURCE_ENERGY>> {
     return room.find(FIND_DROPPED_ENERGY);
+}
+
+export function findDamagedStructures(room: Room): Structure[] {
+    return room.find(FIND_STRUCTURES, { filter: isDamaged });
 }

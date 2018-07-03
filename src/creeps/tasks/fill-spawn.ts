@@ -1,4 +1,6 @@
 import { MAIN_SPAWN_NAME } from '../../common';
+import { isEmpty } from '../../utilities/creep-utilities';
+import { isFull } from '../../utilities/structure-utilities';
 
 import { Task } from '../task';
 
@@ -17,6 +19,6 @@ export class FillSpawn extends Task<StructureSpawn> {
     }
 
     protected isTaskFinished(creep: Creep, target: StructureSpawn): boolean {
-        return creep.carry.energy === 0 || !target || target.energy === target.energyCapacity;
+        return isEmpty(creep) || !target || isFull(target);
     }
 }

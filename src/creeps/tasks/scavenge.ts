@@ -1,9 +1,12 @@
+import { isFull } from '../../utilities/creep-utilities';
+import { findClosestDroppedEnergy } from '../../utilities/position-finders';
+
 import { Task } from '../task';
 
 export class Scavenge extends Task<Resource> {
 
     protected findTargetId(creep: Creep): string {
-        const resource = creep.pos.findClosestByPath(FIND_DROPPED_ENERGY);
+        const resource = findClosestDroppedEnergy(creep.pos);
         return resource ? resource.id : '';
     }
 
@@ -16,7 +19,7 @@ export class Scavenge extends Task<Resource> {
     }
 
     protected isTaskFinished(creep: Creep, target: Resource): boolean {
-        return creep.carry.energy === creep.carryCapacity || !target;
+        return isFull(creep) || !target;
     }
 
 }

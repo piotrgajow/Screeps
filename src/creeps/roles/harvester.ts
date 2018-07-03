@@ -1,13 +1,14 @@
 import { MAIN_SPAWN_NAME } from '../../common';
+import { isEmpty } from '../../utilities/creep-utilities';
 import { findNotFullExtensions } from '../../utilities/room-finders';
-import { hasNoEnergy, isNotFull } from '../../utilities/utilities';
+import { isNotFull } from '../../utilities/structure-utilities';
 
 import { CreepRole } from '../creep-role';
 
 export class Harvester extends CreepRole {
 
     protected findNewTask(): string {
-        if (hasNoEnergy(this.creep)) {
+        if (isEmpty(this.creep)) {
             return 'extract-energy';
         } else if (isNotFull(Game.spawns[MAIN_SPAWN_NAME])) {
             return 'fill-spawn';
