@@ -7,4 +7,3 @@ export class Upgrader extends CreepRole {
     }
 
 }
-

@@ -1,4 +1,4 @@
-import { isTower } from '../structure-filters';
+import { isTower } from '../utilities/structure-utilities';
 
 export class DefenceSystem {
 
@@ -21,4 +21,3 @@ function towerDefendSpawn(spawn: StructureSpawn, tower: StructureTower): void {
         tower.attack(closestEnemy);
     }
 }
-

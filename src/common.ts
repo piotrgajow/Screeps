@@ -58,8 +58,6 @@ class CommonData {
         'upgrade-controller': new UpgradeController(),
     };
 
-    public MAIN_SPAWN = Game.spawns[MAIN_SPAWN_NAME];
-
     public MEMORY = {
         CREEP: {
             ROLE: 'role',

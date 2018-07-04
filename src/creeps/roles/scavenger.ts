@@ -1,11 +1,14 @@
+import { hasSomeEnergy } from '../../utilities/creep-utilities';
+import { findDroppedEnergy } from '../../utilities/room-finders';
+
 import { CreepRole } from '../creep-role';
 
 export class Scavenger extends CreepRole {
 
     protected findNewTask(): string {
-        if (this.creep.carry.energy >0) {
+        if (hasSomeEnergy(this.creep)) {
             return 'fill-storage';
-        } else if (this.creep.room.find(FIND_DROPPED_ENERGY).length) {
+        } else if (findDroppedEnergy(this.creep.room).length > 0) {
             return 'scavenge';
         } else {
             return 'no-op';

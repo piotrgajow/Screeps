@@ -1,9 +1,12 @@
+
+import { isNotFull } from '../../utilities/creep-utilities';
+
 import { CreepRole } from '../creep-role';
 
 export class Hauler extends CreepRole {
 
     protected findNewTask(): string {
-        if (this.creep.carry.energy < this.creep.carryCapacity) {
+        if (isNotFull(this.creep)) {
             return 'pick-from-container';
         } else {
             return 'fill-storage';

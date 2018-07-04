@@ -1,24 +1,22 @@
 import { MAIN_SPAWN_NAME } from '../../common';
-import { ROOM } from '../../room-utils';
+import { isEmpty } from '../../utilities/creep-utilities';
+import { findNotFullExtensions } from '../../utilities/room-finders';
+import { isNotFull } from '../../utilities/structure-utilities';
 
 import { CreepRole } from '../creep-role';
 
 export class Harvester extends CreepRole {
 
     protected findNewTask(): string {
-        if (this.creep.carry.energy === 0) {
+        if (isEmpty(this.creep)) {
             return 'extract-energy';
-        } else if (Game.spawns[MAIN_SPAWN_NAME].energy < Game.spawns[MAIN_SPAWN_NAME].energyCapacity) {
+        } else if (isNotFull(Game.spawns[MAIN_SPAWN_NAME])) {
             return 'fill-spawn';
-        } else if (_.any(ROOM.findExtensions(this.creep.room), Harvester.extensionNotFull)) {
+        } else if (findNotFullExtensions(this.creep.room).length > 0) {
             return 'fill-extensions';
         } else {
             return 'upgrade-controller';
         }
-    }
-
-    private static extensionNotFull(extension: StructureExtension): boolean {
-        return extension.energy < extension.energyCapacity;
     }
 
 }

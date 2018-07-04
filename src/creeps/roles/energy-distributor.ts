@@ -1,5 +1,7 @@
 import { MAIN_SPAWN_NAME } from '../../common';
-import { MEMORY } from '../../enums/memory';
+import { findNotFullTowers, findUpgradersWithLowEnergy } from '../../utilities/room-finders';
+import { isNotFull as roomIsNotFull } from '../../utilities/room-utilities';
+import { isNotFull as structureIsNotFull } from '../../utilities/structure-utilities';
 
 import { CreepRole } from '../creep-role';
 
@@ -8,31 +10,17 @@ export class EnergyDistributor extends CreepRole {
     protected findNewTask(): string {
         if (this.creep.carry.energy === 0) {
             return 'pick-up-energy';
-        } else if (Game.spawns[MAIN_SPAWN_NAME].energy < Game.spawns[MAIN_SPAWN_NAME].energyCapacity) {
+        } else if (structureIsNotFull(Game.spawns[MAIN_SPAWN_NAME])) {
             return 'fill-spawn';
-        } else if (this.creep.room.energyAvailable < this.creep.room.energyCapacityAvailable) {
+        } else if (roomIsNotFull(this.creep.room)) {
             return 'fill-extensions';
-        } else if (this.creep.room.find(FIND_MY_STRUCTURES, { filter: isNotFullTower }).length) {
+        } else if (findNotFullTowers(this.creep.room).length) {
             return 'fill-tower';
-        } else if (this.creep.room.find(FIND_MY_CREEPS, { filter: upgraderLowOnEnergy }).length) {
+        } else if (findUpgradersWithLowEnergy(this.creep.room).length) {
             return 'fill-upgrader';
         } else {
             return 'no-op';
         }
     }
 
-}
-
-const LOW_THRESHOLD = 50;
-
-function isNotFullTower(structure: Structure): boolean {
-    if (structure.structureType !== STRUCTURE_TOWER) {
-        return false;
-    }
-    const tower = structure as StructureTower;
-    return tower.energy < tower.energyCapacity;
-}
-
-export function upgraderLowOnEnergy(creep: Creep): boolean {
-    return creep.memory[MEMORY.ROLE] === 'upgrader' && creep.carry.energy < LOW_THRESHOLD;
 }
