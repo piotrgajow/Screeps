@@ -13,10 +13,8 @@ export class Repair extends Task<Structure> {
     }
 
     protected executeTask(creep: Creep, target: Structure): void {
-        if (target) {
-            if (creep.repair(target) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.repair(target) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

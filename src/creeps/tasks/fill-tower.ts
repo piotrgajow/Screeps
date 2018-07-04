@@ -12,10 +12,8 @@ export class FillTower extends Task<StructureTower> {
     }
 
     protected executeTask(creep: Creep, target: StructureTower): void {
-        if (target) {
-            if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

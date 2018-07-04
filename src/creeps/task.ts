@@ -14,7 +14,9 @@ export abstract class Task<T> {
     public execute(creep: Creep): void {
         const targetId = creep.memory[MEMORY.TARGET];
         const target = this.getTarget(targetId);
-        this.executeTask(creep, target);
+        if (target) {
+            this.executeTask(creep, target);
+        }
         if (this.isTaskFinished(creep, target)) {
             Logger.debug(creep.memory[MEMORY.DEBUG], creep, '- Task finished');
             creep.memory[MEMORY.TASK] = '';

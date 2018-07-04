@@ -11,10 +11,8 @@ export class FillUpgrader extends Task<Creep> {
     }
 
     protected executeTask(creep: Creep, target: Creep): void {
-        if (target) {
-            if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

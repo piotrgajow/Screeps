@@ -15,10 +15,8 @@ export class PickUpEnergy extends Task<StructureStorage | StructureContainer> {
     }
 
     protected executeTask(creep: Creep, target: StructureStorage | StructureContainer): void {
-        if (target) {
-            if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

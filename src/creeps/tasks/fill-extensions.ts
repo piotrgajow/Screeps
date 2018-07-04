@@ -12,10 +12,8 @@ export class FillExtensions extends Task<StructureExtension> {
     }
 
     protected executeTask(creep: Creep, target: StructureExtension): void {
-        if (target) {
-            if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

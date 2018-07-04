@@ -11,10 +11,8 @@ export class Build extends Task<ConstructionSite> {
     }
 
     protected executeTask(creep: Creep, target: ConstructionSite): void {
-        if (target) {
-            if (creep.build(target) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.build(target) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

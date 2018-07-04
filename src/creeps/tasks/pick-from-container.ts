@@ -17,10 +17,8 @@ export class PickFromContainer extends Task<StructureContainer> {
     }
 
     protected executeTask(creep: Creep, target: StructureContainer): any {
-        if (target) {
-            if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

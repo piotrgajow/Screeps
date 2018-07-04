@@ -11,10 +11,8 @@ export class Scavenge extends Task<Resource> {
     }
 
     protected executeTask(creep: Creep, target: Resource): void {
-        if (target) {
-            if (creep.pickup(target) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.pickup(target) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

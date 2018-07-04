@@ -11,10 +11,8 @@ export class FillSpawn extends Task<StructureSpawn> {
     }
 
     protected executeTask(creep: Creep, target: StructureSpawn): void {
-        if (target) {
-            if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 

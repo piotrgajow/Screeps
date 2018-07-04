@@ -11,10 +11,8 @@ export class ExtractEnergy extends Task<Source> {
     }
 
     protected executeTask(creep: Creep, target: Source): void {
-        if (target) {
-            if (creep.harvest(target) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: {} });
-            }
+        if (creep.harvest(target) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: {} });
         }
     }
 
