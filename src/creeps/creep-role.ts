@@ -1,6 +1,5 @@
 import COMMON from '../common';
 import { MEMORY } from '../enums/memory';
-import { LogObject } from '../logging/log-object';
 import { Logger } from '../logging/logger';
 
 export abstract class CreepRole {
@@ -13,7 +12,7 @@ export abstract class CreepRole {
             this.debugFlag(),
             this.creep,
             `- Working on task '${task}' with`,
-            this.logTarget()
+            this.creep.memory[MEMORY.TARGET]
         );
         COMMON.TASKS[task].execute(this.creep);
     }
@@ -33,10 +32,6 @@ export abstract class CreepRole {
 
     private debugFlag(): boolean {
         return this.creep.memory[MEMORY.DEBUG];
-    }
-
-    private logTarget(): LogObject {
-        return { id: this.creep.memory[MEMORY.TARGET], name: 'target' };
     }
 
 }

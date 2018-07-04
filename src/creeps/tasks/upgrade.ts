@@ -22,8 +22,8 @@ export class Upgrade extends Task<Flag> {
         }
     }
 
-    protected isTaskFinished(creep: Creep): boolean {
-        return false;
+    protected isTaskFinished(creep: Creep, target: Flag): boolean {
+        return !target;
     }
 
 }
