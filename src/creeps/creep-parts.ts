@@ -14,4 +14,3 @@ export function checkCombinationFit(parts: BodyPartConstant[], availableEnergy: 
     const partsTotalCost = parts.reduce((intermediate, current) => intermediate + CREEP_PART_PRICES[current], 0);
     return availableEnergy / partsTotalCost;
 }
-
