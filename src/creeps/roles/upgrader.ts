@@ -1,3 +1,4 @@
+import { checkCombinationFit } from '../creep-parts';
 import { CreepRole } from '../creep-role';
 
 export class Upgrader extends CreepRole {
@@ -7,7 +8,13 @@ export class Upgrader extends CreepRole {
     }
 
     public getParts(room: Room): BodyPartConstant[] {
-        return [CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE];
+        const combination = [CARRY, WORK, MOVE];
+        const availableEnergy = room.energyCapacityAvailable;
+        const count = checkCombinationFit(combination, availableEnergy);
+        const parts: BodyPartConstant[] = [];
+        combination.forEach((part) => _.times(count, () => parts.push(part)));
+
+        return parts;
     }
 
 }
