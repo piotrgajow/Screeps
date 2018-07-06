@@ -10,7 +10,7 @@ export class Miner extends CreepRole {
     public getParts(room: Room): BodyPartConstant[] {
         const availableEnergy = room.energyCapacityAvailable - CREEP_PART_PRICES[MOVE];
         const parts: BodyPartConstant[] = [MOVE];
-        const count = Math.max(checkCombinationFit([WORK], availableEnergy), 5);
+        const count = Math.min(checkCombinationFit([WORK], availableEnergy), 5);
         _.times(count, () => parts.push(WORK));
         return parts;
     }
