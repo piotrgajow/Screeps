@@ -1,8 +1,8 @@
 import { MEMORY } from '../../enums/memory';
+import { Logger } from '../../logging/logger';
 import { findClosestNotOccupiedMine } from '../../utilities/position-finders';
 
 import { Task } from '../task';
-import { Logger } from '../../logging/logger';
 
 export class Mine extends Task<Flag> {
 

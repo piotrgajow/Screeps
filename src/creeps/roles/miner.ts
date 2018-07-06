@@ -6,4 +6,8 @@ export class Miner extends CreepRole {
         return 'mine';
     }
 
+    public getParts(room: Room): BodyPartConstant[] {
+        return [MOVE, WORK, WORK, WORK, WORK, WORK];
+    }
+
 }

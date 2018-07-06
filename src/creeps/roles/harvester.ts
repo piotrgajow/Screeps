@@ -19,4 +19,8 @@ export class Harvester extends CreepRole {
         }
     }
 
+    public getParts(room: Room): BodyPartConstant[] {
+        return [WORK, WORK, CARRY, MOVE];
+    }
+
 }

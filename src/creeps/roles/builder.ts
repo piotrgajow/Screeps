@@ -15,4 +15,8 @@ export class Builder extends CreepRole {
         }
     }
 
+    public getParts(room: Room): BodyPartConstant[] {
+        return [WORK, WORK, CARRY, MOVE];
+    }
+
 }

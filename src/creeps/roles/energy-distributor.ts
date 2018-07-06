@@ -23,4 +23,8 @@ export class EnergyDistributor extends CreepRole {
         }
     }
 
+    public getParts(room: Room): BodyPartConstant[] {
+        return [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE];
+    }
+
 }

@@ -6,4 +6,8 @@ export class Idler extends CreepRole {
         return 'no-op';
     }
 
+    public getParts(room: Room): BodyPartConstant[] {
+        return [];
+    }
+
 }

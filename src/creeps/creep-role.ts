@@ -34,4 +34,6 @@ export abstract class CreepRole {
         return this.creep.memory[MEMORY.DEBUG];
     }
 
+    public abstract getParts(room: Room): BodyPartConstant[];
+
 }

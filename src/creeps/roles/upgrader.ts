@@ -6,4 +6,8 @@ export class Upgrader extends CreepRole {
         return 'upgrade';
     }
 
+    public getParts(room: Room): BodyPartConstant[] {
+        return [CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE];
+    }
+
 }

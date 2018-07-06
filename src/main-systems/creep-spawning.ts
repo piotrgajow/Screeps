@@ -1,4 +1,4 @@
-import { MAIN_SPAWN_NAME } from '../common';
+import { default as COMMON, MAIN_SPAWN_NAME } from '../common';
 import { MEMORY } from '../enums/memory';
 import { Logger } from '../logging/logger';
 
@@ -35,23 +35,10 @@ export class CreepSpawning {
     }
 
     private static spawn(role: string): void {
-        const DEFINITIONS = {
-            'builder': { parts: [WORK, WORK, CARRY, MOVE], name: 'Builder' },
-            'energy-distributor': { parts: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], name: 'Energy Distributor' },
-            'harvester': { parts: [WORK, WORK, CARRY, MOVE], name: 'Harvester' },
-            'hauler': { parts: [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], name: 'Hauler' },
-            'miner': { parts: [MOVE, WORK, WORK, WORK, WORK, WORK], name: 'Miner' },
-            'scavenger': { parts: [CARRY, CARRY, MOVE], name: 'Scavenger' },
-            'upgrader': {
-                name: 'Upgrader',
-                parts: [CARRY, CARRY, CARRY, CARRY, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE, MOVE],
-            },
-            'worker': { parts: [WORK, WORK, CARRY, MOVE], name: 'Worker' },
-        };
-        const definition = DEFINITIONS[role];
+        const parts = COMMON.ROLES[role].getParts(Game.spawns[MAIN_SPAWN_NAME].room);
         Game.spawns[MAIN_SPAWN_NAME].spawnCreep(
-            definition.parts,
-            `${definition.name}-${CreepSpawning.creepIndex()}`,
+            parts,
+            `${role}-${CreepSpawning.creepIndex()}`,
             { memory: { role, task: '', debug: false, target: '' } },
         );
     }
