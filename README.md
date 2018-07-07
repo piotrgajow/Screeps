@@ -66,7 +66,7 @@ Will move energy from containers to storage.
 
 Does nothing. Fallback role used in case of errors.
 
-### Miner [550]
+### Miner [50 + 100*n] (max 550)
 
 Will find mine flag without miner creep occupying the position and move to it. Then it will mine adjacent source and drop the energy into a container.
 
@@ -76,7 +76,7 @@ Requires mine flag (containing `mine` keyword) on a position adjacent to the sou
 
 Will search for dropped energy and move it to storage.
 
-### Upgrader [800]
+### Upgrader [200 * n]
 
 Will look for empty position with upgrade flag and move to it. Then it will upgrade the controller. The role relies on Energy Distributor to be given energy.
 

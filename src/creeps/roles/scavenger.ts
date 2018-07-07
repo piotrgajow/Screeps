@@ -15,4 +15,8 @@ export class Scavenger extends CreepRole {
         }
     }
 
+    public getParts(room: Room): BodyPartConstant[] {
+        return [CARRY, CARRY, MOVE];
+    }
+
 }
