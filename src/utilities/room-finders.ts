@@ -1,5 +1,6 @@
 import { isLowOnEnergyUpgrader } from './creep-utilities';
 import { isDamaged, isNotFullExtension, isNotFullTower } from './structure-utilities';
+import { isNotEmpty } from './tombstone-utilities';
 
 export function findConstructionSites(room: Room): ConstructionSite[] {
     return room.find(FIND_MY_CONSTRUCTION_SITES);
@@ -22,12 +23,8 @@ export function hasResourcesToScavenge(room: Room): boolean {
     if (droppedResources.length > 0) {
         return true;
     }
-    const tombstones = room.find(FIND_TOMBSTONES);
+    const tombstones = room.find(FIND_TOMBSTONES, { filter: isNotEmpty });
     return tombstones.length > 0;
-}
-
-export function findDroppedResources(room: Room): Resource[] {
-    return room.find(FIND_DROPPED_RESOURCES);
 }
 
 export function findDamagedStructures(room: Room): Structure[] {

@@ -10,6 +10,7 @@ import {
     isNotFullTower,
     isStorage
 } from './structure-utilities';
+import { isNotEmpty } from './tombstone-utilities';
 
 export function findClosestConstructionSite(position: RoomPosition): ConstructionSite | null {
     return position.findClosestByRange(FIND_CONSTRUCTION_SITES);
@@ -72,5 +73,5 @@ export function findClosestNotOccupiedUpgradeSite(position: RoomPosition): Flag 
 }
 
 export function findClosestTombstone(position: RoomPosition): Tombstone | null {
-    return position.findClosestByPath(FIND_TOMBSTONES);
+    return position.findClosestByPath(FIND_TOMBSTONES, { filter: isNotEmpty });
 }
