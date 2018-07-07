@@ -43,8 +43,8 @@ export function findClosestNotEmptyContainer(position: RoomPosition): StructureC
     return position.findClosestByPath(FIND_STRUCTURES, { filter: isNotEmptyContainer }) as StructureContainer;
 }
 
-export function findClosestDroppedEnergy(position: RoomPosition): Resource<RESOURCE_ENERGY> {
-    return position.findClosestByPath(FIND_DROPPED_ENERGY);
+export function findClosestDroppedResources(position: RoomPosition): Resource {
+    return position.findClosestByPath(FIND_DROPPED_RESOURCES);
 }
 
 export function findClosestNotOccupiedMine(position: RoomPosition): Flag {

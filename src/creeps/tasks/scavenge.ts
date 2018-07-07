@@ -1,12 +1,12 @@
 import { isFull } from '../../utilities/creep-utilities';
-import { findClosestDroppedEnergy } from '../../utilities/position-finders';
+import { findClosestDroppedResources } from '../../utilities/position-finders';
 
 import { Task } from '../task';
 
 export class Scavenge extends Task<Resource> {
 
     protected findTargetId(creep: Creep): string {
-        const resource = findClosestDroppedEnergy(creep.pos);
+        const resource = findClosestDroppedResources(creep.pos);
         return resource ? resource.id : '';
     }
 

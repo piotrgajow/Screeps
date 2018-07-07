@@ -17,8 +17,8 @@ export function findNotFullExtensions(room: Room): StructureExtension[] {
     return room.find(FIND_STRUCTURES, { filter: isNotFullExtension }) as StructureExtension[];
 }
 
-export function findDroppedEnergy(room: Room): Array<Resource<RESOURCE_ENERGY>> {
-    return room.find(FIND_DROPPED_ENERGY);
+export function findDroppedResources(room: Room): Resource[] {
+    return room.find(FIND_DROPPED_RESOURCES);
 }
 
 export function findDamagedStructures(room: Room): Structure[] {
