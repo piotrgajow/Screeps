@@ -1,0 +1,29 @@
+language: javascript
+
+sudo: required
+dist: trusty
+
+addons:
+  chrome: stable
+
+cache:
+    directories:
+        - $HOME/.m2
+        - $HOME/.grails
+        - $HOME/.gradle
+        - $HOME/.npm
+
+jobs:
+    include:
+        - &prepare
+          stage: Lint
+          node_js:
+              - 6
+          before_script:
+              - "sudo chown root /opt/google/chrome/chrome-sandbox"
+              - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+              - npm install
+          script: npm run lint
+        - <<: *prepare
+          stage: Build
+          script: npm run build
