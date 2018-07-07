@@ -7,7 +7,8 @@ import { Task } from '../task';
 export class Mine extends Task<Flag> {
 
     protected findTargetId(creep: Creep): string {
-        return findClosestNotOccupiedMine(creep.pos).name;
+        const mineFlag = findClosestNotOccupiedMine(creep.pos);
+        return mineFlag ? mineFlag.name : '';
     }
 
     protected getTarget(id: string): Flag {

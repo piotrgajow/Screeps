@@ -17,7 +17,7 @@ function defendSpawn(spawn: StructureSpawn): void {
 function towerDefendSpawn(spawn: StructureSpawn, tower: StructureTower): void {
     const enemies = spawn.room.find(FIND_HOSTILE_CREEPS) as Creep[];
     if (enemies && enemies.length) {
-        const closestEnemy = spawn.pos.findClosestByRange(enemies);
+        const closestEnemy = spawn.pos.findClosestByRange(enemies)!;
         tower.attack(closestEnemy);
     }
 }

@@ -5,7 +5,8 @@ import { Task } from '../task';
 export class Upgrade extends Task<Flag> {
 
     protected findTargetId(creep: Creep): string {
-        return findClosestNotOccupiedUpgradeSite(creep.pos).name;
+        const upgradeFlag = findClosestNotOccupiedUpgradeSite(creep.pos);
+        return upgradeFlag ? upgradeFlag.name : '';
     }
 
     protected getTarget(id: string): Flag {

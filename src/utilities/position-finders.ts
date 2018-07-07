@@ -11,43 +11,43 @@ import {
     isStorage
 } from './structure-utilities';
 
-export function findClosestConstructionSite(position: RoomPosition): ConstructionSite {
+export function findClosestConstructionSite(position: RoomPosition): ConstructionSite | null {
     return position.findClosestByRange(FIND_CONSTRUCTION_SITES);
 }
 
-export function findClosestSource(position: RoomPosition): Source {
+export function findClosestSource(position: RoomPosition): Source | null {
     return position.findClosestByPath(FIND_SOURCES);
 }
 
-export function findClosestNotFullExtension(position: RoomPosition): StructureExtension {
+export function findClosestNotFullExtension(position: RoomPosition): StructureExtension | null {
     return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isNotFullExtension }) as StructureExtension;
 }
 
-export function findClosestStorage(position: RoomPosition): StructureStorage {
+export function findClosestStorage(position: RoomPosition): StructureStorage | null {
     return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isStorage }) as StructureStorage;
 }
 
-export function findClosestNotFullTower(position: RoomPosition): StructureTower {
+export function findClosestNotFullTower(position: RoomPosition): StructureTower | null {
     return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isNotFullTower }) as StructureTower;
 }
 
-export function findClosestLowOnEnergyUpgrader(position: RoomPosition): Creep {
+export function findClosestLowOnEnergyUpgrader(position: RoomPosition): Creep | null {
     return position.findClosestByPath(FIND_MY_CREEPS, { filter: isLowOnEnergyUpgrader }) as Creep;
 }
 
-export function findClosestHighOnEnergyConainer(position: RoomPosition): StructureContainer {
+export function findClosestHighOnEnergyConainer(position: RoomPosition): StructureContainer | null {
     return position.findClosestByPath(FIND_STRUCTURES, { filter: isHighOnEnergyContainer }) as StructureContainer;
 }
 
-export function findClosestNotEmptyContainer(position: RoomPosition): StructureContainer {
+export function findClosestNotEmptyContainer(position: RoomPosition): StructureContainer | null {
     return position.findClosestByPath(FIND_STRUCTURES, { filter: isNotEmptyContainer }) as StructureContainer;
 }
 
-export function findClosestDroppedResources(position: RoomPosition): Resource {
+export function findClosestDroppedResources(position: RoomPosition): Resource | null {
     return position.findClosestByPath(FIND_DROPPED_RESOURCES);
 }
 
-export function findClosestNotOccupiedMine(position: RoomPosition): Flag {
+export function findClosestNotOccupiedMine(position: RoomPosition): Flag | null {
     const mines = findMines();
     const minerCreeps = findMiners();
     const validMines = _.filter(mines, (mineFlagName) => {
@@ -59,7 +59,7 @@ export function findClosestNotOccupiedMine(position: RoomPosition): Flag {
     return position.findClosestByPath(validMineFlags);
 }
 
-export function findClosestNotOccupiedUpgradeSite(position: RoomPosition): Flag {
+export function findClosestNotOccupiedUpgradeSite(position: RoomPosition): Flag | null {
     const upgradeSites = findUpgradeSites();
     const upgraderCreeps = findUpgraderCreeps();
     const validUpgradeSites = _.filter(upgradeSites, (flagName) => {
