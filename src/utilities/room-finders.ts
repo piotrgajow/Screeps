@@ -17,6 +17,15 @@ export function findNotFullExtensions(room: Room): StructureExtension[] {
     return room.find(FIND_STRUCTURES, { filter: isNotFullExtension }) as StructureExtension[];
 }
 
+export function hasResourcesToScavenge(room: Room): boolean {
+    const droppedResources = room.find(FIND_DROPPED_RESOURCES);
+    if (droppedResources.length > 0) {
+        return true;
+    }
+    const tombstones = room.find(FIND_TOMBSTONES);
+    return tombstones.length > 0;
+}
+
 export function findDroppedResources(room: Room): Resource[] {
     return room.find(FIND_DROPPED_RESOURCES);
 }
