@@ -70,3 +70,7 @@ export function findClosestNotOccupiedUpgradeSite(position: RoomPosition): Flag 
     const validFlags: Flag[] = _.map(validUpgradeSites, (name) => Game.flags[name]);
     return position.findClosestByPath(validFlags);
 }
+
+export function findClosestTombstone(position: RoomPosition): Tombstone | null {
+    return position.findClosestByPath(FIND_TOMBSTONES);
+}
