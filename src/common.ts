@@ -4,7 +4,6 @@ import { EnergyDistributor } from './creeps/roles/energy-distributor';
 import { Harvester } from './creeps/roles/harvester';
 import { Hauler } from './creeps/roles/hauler';
 import { Miner } from './creeps/roles/miner';
-import { Scavenger } from './creeps/roles/scavenger';
 import { Upgrader } from './creeps/roles/upgrader';
 import { Worker } from './creeps/roles/worker';
 
@@ -35,7 +34,6 @@ class CommonData {
         'harvester': Harvester.prototype,
         'hauler': Hauler.prototype,
         'miner': Miner.prototype,
-        'scavenger': Scavenger.prototype,
         'upgrader': Upgrader.prototype,
         'worker': Worker.prototype,
     };
