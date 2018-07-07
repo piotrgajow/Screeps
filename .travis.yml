@@ -8,9 +8,6 @@ addons:
 
 cache:
     directories:
-        - $HOME/.m2
-        - $HOME/.grails
-        - $HOME/.gradle
         - $HOME/.npm
 
 jobs:
