@@ -1,4 +1,7 @@
-language: javascript
+language: node_js
+
+node_js:
+  - 6
 
 sudo: required
 dist: trusty
@@ -19,6 +22,7 @@ jobs:
           before_script:
               - "sudo chown root /opt/google/chrome/chrome-sandbox"
               - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+              - node -version
               - npm install
           script: npm run lint
         - <<: *prepare
