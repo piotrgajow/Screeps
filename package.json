@@ -21,7 +21,7 @@
   "license": "Unlicense",
   "devDependencies": {
     "@types/lodash": "3.10.1",
-    "@types/screeps": "2.1.0",
+    "@types/screeps": "2.4.0",
     "@types/source-map": "0.5.7",
     "rollup": "0.53.4",
     "rollup-plugin-clean": "1.0.0",
