@@ -1,5 +1,5 @@
 import { isFull } from '../../utilities/creep-utilities';
-import { findClosestNotEmptyContainer, findClosestStorage } from '../../utilities/position-finders';
+import { findClosestNotEmptyContainer, findClosestNotEmptyStorage } from '../../utilities/position-finders';
 
 import { Task } from '../task';
 
@@ -7,7 +7,7 @@ export class PickUpEnergy extends Task<StructureStorage | StructureContainer> {
 
     protected findTargetId(creep: Creep): string {
         let target: StructureStorage | StructureContainer | null;
-        target = findClosestStorage(creep.pos);
+        target = findClosestNotEmptyStorage(creep.pos);
         if (!target) {
             target = findClosestNotEmptyContainer(creep.pos);
         }
