@@ -8,7 +8,9 @@ export function isNotEmpty(store: StoreDefinition): boolean {
 }
 
 export function getResourceType(store: StoreDefinition): ResourceConstant {
-    return _.any(_.pairs(store), isResourceNotZero)[0] as ResourceConstant;
+    const pairs = _.pairs(store);
+    const pair = _.find(pairs, isResourceNotZero);
+    return pair ? pair[0] : RESOURCE_ENERGY;
 }
 
 function totalResources(store: StoreDefinition): number {

@@ -31,7 +31,9 @@ export function isMiner(creep: Creep): boolean {
 }
 
 export function getResourceType(creep: Creep): ResourceConstant {
-    return _.any(_.pairs(creep.carry), isResourceNotZero)[0] as ResourceConstant;
+    const pairs = _.pairs(creep.carry);
+    const pair = _.find(pairs, isResourceNotZero);
+    return pair ? pair[0] : RESOURCE_ENERGY;
 }
 
 function totalResources(creep: Creep): number {
