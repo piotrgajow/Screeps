@@ -6,7 +6,7 @@ import { Task } from '../task';
 export class PickUpEnergy extends Task<StructureStorage | StructureContainer> {
 
     protected findTargetId(creep: Creep): string {
-        let target: StructureStorage | StructureContainer;
+        let target: StructureStorage | StructureContainer | null;
         target = findClosestStorage(creep.pos);
         if (!target) {
             target = findClosestNotEmptyContainer(creep.pos);
