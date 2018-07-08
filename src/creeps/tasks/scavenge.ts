@@ -1,6 +1,6 @@
 import { isFull } from '../../utilities/creep-utilities';
 import { findClosestDroppedResources, findClosestTombstone } from '../../utilities/position-finders';
-import { isEmpty } from '../../utilities/tombstone-utilities';
+import { getResourceType, isEmpty } from '../../utilities/tombstone-utilities';
 
 import { Task } from '../task';
 
@@ -21,7 +21,8 @@ export class Scavenge extends Task<Resource | Tombstone> {
                 creep.moveTo(target, { visualizePathStyle: {} });
             }
         } else {
-            if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            const tombstone = target as Tombstone;
+            if (creep.withdraw(target, getResourceType(tombstone)) === ERR_NOT_IN_RANGE) {
                 creep.moveTo(target, { visualizePathStyle: {} });
             }
         }

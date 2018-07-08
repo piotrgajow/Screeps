@@ -1,8 +1,17 @@
+import {
+    getResourceType as storeGetResourceType,
+    isEmpty as storeIsEmpty,
+    isNotEmpty as storeIsNotEmpty
+} from '../utilities/store-utilities';
 
 export function isEmpty(tombstone: Tombstone): boolean {
-    return tombstone.store.energy === 0;
+    return storeIsEmpty(tombstone.store);
 }
 
 export function isNotEmpty(tombstone: Tombstone): boolean {
-    return tombstone.store.energy > 0;
+    return storeIsNotEmpty(tombstone.store);
+}
+
+export function getResourceType(tombstone: Tombstone): ResourceConstant {
+    return storeGetResourceType(tombstone.store);
 }
