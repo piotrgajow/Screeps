@@ -6,9 +6,9 @@ import { findMines, findUpgradeSites } from './flag-finders';
 import {
     isHighOnEnergyContainer,
     isNotEmptyContainer,
+    isNotEmptyStorage,
     isNotFullExtension,
     isNotFullTower,
-    isStorage
 } from './structure-utilities';
 import { isNotEmpty } from './tombstone-utilities';
 
@@ -24,8 +24,8 @@ export function findClosestNotFullExtension(position: RoomPosition): StructureEx
     return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isNotFullExtension }) as StructureExtension;
 }
 
-export function findClosestStorage(position: RoomPosition): StructureStorage | null {
-    return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isStorage }) as StructureStorage;
+export function findClosestNotEmptyStorage(position: RoomPosition): StructureStorage | null {
+    return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isNotEmptyStorage }) as StructureStorage;
 }
 
 export function findClosestNotFullTower(position: RoomPosition): StructureTower | null {
@@ -54,7 +54,7 @@ export function findClosestNotOccupiedMine(position: RoomPosition): Flag | null 
     const validMines = _.filter(mines, (mineFlagName) => {
         return _.every(minerCreeps, (c) => {
             return c.memory[MEMORY.TARGET] !== mineFlagName;
-        }) ;
+        });
     });
     const validMineFlags: Flag[] = _.map(validMines, (mineName) => Game.flags[mineName]);
     return position.findClosestByPath(validMineFlags);
@@ -66,7 +66,7 @@ export function findClosestNotOccupiedUpgradeSite(position: RoomPosition): Flag 
     const validUpgradeSites = _.filter(upgradeSites, (flagName) => {
         return _.every(upgraderCreeps, (c) => {
             return c.memory[MEMORY.TARGET] !== flagName;
-        }) ;
+        });
     });
     const validFlags: Flag[] = _.map(validUpgradeSites, (name) => Game.flags[name]);
     return position.findClosestByPath(validFlags);

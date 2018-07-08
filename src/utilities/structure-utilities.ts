@@ -1,5 +1,5 @@
 type StructureWithEnergy = StructureSpawn | StructureTower | StructureExtension;
-type StructureWithStorage = StructureContainer;
+type StructureWithStorage = StructureContainer | StructureStorage;
 
 const HIGH_ENERGY_THRESHOLD = 1000;
 
@@ -63,4 +63,8 @@ export function isHighOnEnergyContainer(structure: Structure): boolean {
 
 export function isNotEmptyContainer(structure: Structure): boolean {
     return isContainer(structure) && isNotEmpty(structure as StructureContainer);
+}
+
+export function isNotEmptyStorage(structure: Structure): boolean {
+    return isStorage(structure) && isNotEmpty(structure as StructureStorage);
 }

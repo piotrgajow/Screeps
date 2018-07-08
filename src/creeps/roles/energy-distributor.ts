@@ -1,4 +1,5 @@
 import { MAIN_SPAWN_NAME } from '../../common';
+import { isEmpty } from '../../utilities/creep-utilities';
 import { findNotFullTowers, findUpgradersWithLowEnergy } from '../../utilities/room-finders';
 import { isNotFull as roomIsNotFull } from '../../utilities/room-utilities';
 import { isNotFull as structureIsNotFull } from '../../utilities/structure-utilities';
@@ -8,7 +9,7 @@ import { CreepRole } from '../creep-role';
 export class EnergyDistributor extends CreepRole {
 
     protected findNewTask(): string {
-        if (this.creep.carry.energy === 0) {
+        if (isEmpty(this.creep)) {
             return 'pick-up-energy';
         } else if (structureIsNotFull(Game.spawns[MAIN_SPAWN_NAME])) {
             return 'fill-spawn';

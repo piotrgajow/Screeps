@@ -1,12 +1,12 @@
 import { getResourceType, isEmpty } from '../../utilities/creep-utilities';
-import { findClosestStorage } from '../../utilities/position-finders';
+import { findClosestNotEmptyStorage } from '../../utilities/position-finders';
 
 import { Task } from '../task';
 
 export class FillStorage extends Task<StructureStorage> {
 
     protected findTargetId(creep: Creep): string {
-        const storage = findClosestStorage(creep.pos);
+        const storage = findClosestNotEmptyStorage(creep.pos);
         return storage ? storage.id : '';
     }
 
