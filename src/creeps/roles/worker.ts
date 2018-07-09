@@ -12,10 +12,10 @@ export class Worker extends CreepRole {
             return 'extract-energy';
         } else if (isNotFull(Game.spawns[MAIN_SPAWN_NAME])) {
             return 'fill-spawn';
-        } else if (findConstructionSites(this.creep.room).length > 0) {
-            return 'build';
         } else if (findNotFullExtensions(this.creep.room).length > 0) {
             return 'fill-extensions';
+        } else if (findConstructionSites(this.creep.room).length > 0) {
+            return 'build';
         } else {
             return 'upgrade-controller';
         }
