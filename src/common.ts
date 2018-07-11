@@ -1,7 +1,6 @@
 import { CreepRole } from './creeps/creep-role';
 import { Builder } from './creeps/roles/builder';
 import { EnergyDistributor } from './creeps/roles/energy-distributor';
-import { Harvester } from './creeps/roles/harvester';
 import { Hauler } from './creeps/roles/hauler';
 import { Miner } from './creeps/roles/miner';
 import { Upgrader } from './creeps/roles/upgrader';
@@ -31,7 +30,6 @@ class CommonData {
     public ROLES: { [s: string]: CreepRole } = {
         'builder': Builder.prototype,
         'energy-distributor': EnergyDistributor.prototype,
-        'harvester': Harvester.prototype,
         'hauler': Hauler.prototype,
         'miner': Miner.prototype,
         'upgrader': Upgrader.prototype,

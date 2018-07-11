@@ -44,23 +44,22 @@ The existing roles are:
 
 ### Worker [300]
 
-Starter role. Will harvest energy from souce and fill spawn, build, fill extensions and upgrade controller.
+Starter role. Will harvest energy from source and fill spawn, build, fill extensions and upgrade controller.
 
 ### Builder [300]
 
 Used to build and maintain constructions. Will pick up energy from storage, build new constructions and then repair existing ones.
+Requires: storage or containers
 
 ### Energy Distributor [300]
 
 Will pick up energy from from storage and distribute it to spawns, extensions, towers and upgraders.
-
-### Harvester [300]
-
-Basic creep which will extract energy from source, fill spawn and extensions and upgrade controller
+Requires: storage or containers
 
 ### Hauler [300]
 
-Will move energy from containers to storage.
+Will move resources from containers, tombstones and dropped to storage.
+Requires: storage and containers
 
 ### Idler
 
@@ -71,10 +70,6 @@ Does nothing. Fallback role used in case of errors.
 Will find mine flag without miner creep occupying the position and move to it. Then it will mine adjacent source and drop the energy into a container.
 
 Requires mine flag (containing `mine` keyword) on a position adjacent to the source. Flag should have saved in memory the source id in `source` property. A container should be present in the position.
-
-### Scavenger [150]
-
-Will search for dropped energy and move it to storage.
 
 ### Upgrader [200 * n]
 
