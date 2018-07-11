@@ -9,17 +9,25 @@ interface SpawnTarget {
 export class CreepSpawning {
 
     public static execute(): void {
-        const spawnOrder = Game.spawns[MAIN_SPAWN_NAME].memory[MEMORY.SPAWN_ORDER];
+        const spawn = Game.spawns[MAIN_SPAWN_NAME];
+
+        if (spawn.room.energyAvailable <= 300 && _.values(Game.creeps).length === 0) {
+            Logger.error(spawn.room.name, 'Spawning emergency worker');
+            CreepSpawning.spawn('worker');
+            return;
+        }
+
+        const spawnOrder = spawn.memory[MEMORY.SPAWN_ORDER];
 
         if (!spawnOrder) {
-            Logger.log(Game.spawns[MAIN_SPAWN_NAME].room.name, 'Spawn order not specified!');
+            Logger.log(spawn.room.name, 'Spawn order not specified!');
             return;
         }
 
         const existingCreepCount = CreepSpawning.countExistingCreeps();
-        Logger.debug(Game.spawns[MAIN_SPAWN_NAME].memory[MEMORY.DEBUG], 'Targets:', JSON.stringify(spawnOrder));
+        Logger.debug(spawn.memory[MEMORY.DEBUG], 'Targets:', JSON.stringify(spawnOrder));
         Logger.debug(
-            Game.spawns[MAIN_SPAWN_NAME].memory[MEMORY.DEBUG],
+            spawn.memory[MEMORY.DEBUG],
             'Existing creeps:',
             JSON.stringify(existingCreepCount)
         );
@@ -29,7 +37,7 @@ export class CreepSpawning {
         });
         if (target) {
             const roleToBuild = _.keys(target)[0];
-            Logger.debug(Game.spawns[MAIN_SPAWN_NAME].memory[MEMORY.DEBUG], 'Spawning:', roleToBuild);
+            Logger.debug(spawn.memory[MEMORY.DEBUG], 'Spawning:', roleToBuild);
             CreepSpawning.spawn(roleToBuild);
         }
     }
