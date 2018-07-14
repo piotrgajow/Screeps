@@ -3,7 +3,7 @@ import { Logger } from '../../logging/logger';
 
 import { Task } from '../task';
 
-import { isEmpty } from '../../utilities/creep-utilities';
+import { isNotFull } from '../../utilities/creep-utilities';
 import { findNotOccupiedRemoteMine } from '../../utilities/flag-finders';
 import { hasContainer, lookForConstructionSite } from '../../utilities/position-finders';
 
@@ -20,7 +20,7 @@ export class MineRemote extends Task<Flag> {
 
     protected executeTask(creep: Creep, target: Flag): void {
         if (target.pos.isEqualTo(creep.pos)) {
-            if (isEmpty(creep)) {
+            if (isNotFull(creep)) {
                 const sourceId = target.memory[MEMORY.SOURCE];
                 if (!sourceId) {
                     Logger.error(creep.room.name, 'flag', target.name, 'has no specified source');
