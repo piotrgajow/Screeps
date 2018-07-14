@@ -4,6 +4,7 @@ import { findMiners, findUpgraderCreeps } from './creep-finders';
 import { isLowOnEnergyUpgrader } from './creep-utilities';
 import { findMines, findUpgradeSites } from './flag-finders';
 import {
+    isContainer,
     isHighOnEnergyContainer,
     isNotEmptyContainer,
     isNotEmptyStorage,
@@ -79,4 +80,14 @@ export function findClosestNotOccupiedUpgradeSite(position: RoomPosition): Flag 
 
 export function findClosestTombstone(position: RoomPosition): Tombstone | null {
     return position.findClosestByPath(FIND_TOMBSTONES, { filter: isNotEmpty });
+}
+
+export function hasContainer(position: RoomPosition): boolean {
+    const structures = position.lookFor(LOOK_STRUCTURES);
+    return _.any(structures, isContainer);
+}
+
+export function lookForConstructionSite(position: RoomPosition): ConstructionSite | null {
+    const constructionSites = position.lookFor(LOOK_CONSTRUCTION_SITES);
+    return constructionSites.length > 0 ? constructionSites[0] : null;
 }

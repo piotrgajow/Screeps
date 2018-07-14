@@ -3,7 +3,6 @@ export enum MEMORY {
     ROLE = 'role',
     SOURCE = 'source',
     SPAWN_ORDER = 'spawn-order',
-    STORAGE = 'storage',
     TARGET = 'target',
     TASK = 'task',
 }
