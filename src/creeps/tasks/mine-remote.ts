@@ -21,9 +21,15 @@ export class MineRemote extends Task<Flag> {
     protected executeTask(creep: Creep, target: Flag): void {
         if (target.pos.isEqualTo(creep.pos)) {
             if (isNotFull(creep)) {
-                const sourceId = target.memory[MEMORY.SOURCE];
+                let sourceId = target.memory[MEMORY.SOURCE];
                 if (!sourceId) {
-                    Logger.error(creep.room.name, 'flag', target.name, 'has no specified source');
+                    const sourcesNearby = target.pos.findInRange(FIND_SOURCES, 1);
+                    if (sourcesNearby.length === 0) {
+                        Logger.error(creep.room.name, 'flag', target.name, 'has no source nearby');
+                    } else {
+                        sourceId = sourcesNearby[0].id;
+                        target.memory[MEMORY.SOURCE] = sourceId;
+                    }
                 }
                 const source = Game.getObjectById(sourceId) as Source;
                 creep.harvest(source);
