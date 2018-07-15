@@ -19,6 +19,7 @@ import { Mine } from './creeps/tasks/mine';
 import { MineRemote } from './creeps/tasks/mine-remote';
 import { NoOp } from './creeps/tasks/no-op';
 import { PickFromContainer } from './creeps/tasks/pick-from-container';
+import { PickFromRemoteMine } from './creeps/tasks/pick-from-remote-mine';
 import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
 import { Scavenge } from './creeps/tasks/scavenge';
@@ -51,6 +52,7 @@ class CommonData {
         'mine-remote': new MineRemote(),
         'no-op': new NoOp(),
         'pick-from-container': new PickFromContainer(),
+        'pick-from-remote-mine': new PickFromRemoteMine(),
         'pick-up-energy': new PickUpEnergy(),
         'repair': new Repair(),
         'scavenge': new Scavenge(),
