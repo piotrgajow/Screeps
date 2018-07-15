@@ -5,21 +5,27 @@ import { isContainer } from '../utilities/structure-utilities';
 
 const REMOTE_MINE_PREFIX = 'remote-mine';
 
-export class RemoteMine extends Flag {
+export class RemoteMine {
+
+    constructor(
+        private flag: Flag,
+    ) {
+    }
 
     get container(): StructureContainer | undefined {
-        const containerResult = _.find(this.pos.look(), isContainerStructure) as LookAtResult<LOOK_STRUCTURES>;
+        const containerResult = _.find(this.flag.pos.look(), isContainerStructure) as LookAtResult<LOOK_STRUCTURES>;
         return _.get(containerResult, 'structure') as StructureContainer;
     }
 
     get hauler(): Creep | undefined {
-        return findCreep(isRemoteHauler, isTargeting(this.name));
+        return findCreep(isRemoteHauler, isTargeting(this.flag.name));
     }
 
 }
 
 export function findRemoteMines(): RemoteMine[] {
-    return _.filter(Game.flags, isRemoteMine) as RemoteMine[];
+    const flags = _.filter(Game.flags, isRemoteMine);
+    return _.map(flags, (it) => new RemoteMine(it));
 }
 
 function isRemoteMine(flag: Flag): boolean {

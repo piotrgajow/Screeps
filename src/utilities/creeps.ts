@@ -4,14 +4,24 @@ import { MEMORY } from '../enums/memory';
 
 export function findCreep(...filters: Array<(creep: Creep) => boolean>): Creep | undefined {
     const allCreeps: Creep[] = _.values(Game.creeps);
-    const filter = _.flow(...filters);
+
+    const filter = (creep: Creep) => {
+        let result = true;
+        _.each(filters, (it) => {
+            result = result && it(creep);
+        });
+        return result;
+    };
+
     return _.find(allCreeps, filter);
 }
 
 export function isRemoteHauler(creep: Creep): boolean {
-    return creep.memory[MEMORY.ROLE] === REMOTE_HAULER;
+    return creep && creep.memory[MEMORY.ROLE] === REMOTE_HAULER;
 }
 
 export function isTargeting(target: string): (creep: Creep) => boolean {
-    return (creep: Creep) => creep.memory[MEMORY.TARGET] === target;
+    return (creep: Creep) => {
+        return creep && creep.memory[MEMORY.TARGET] === target;
+    };
 }
