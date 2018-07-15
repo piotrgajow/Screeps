@@ -1,12 +1,14 @@
 import { getResourceType, isEmpty } from '../../utilities/creep-utilities';
-import { findClosestStorage } from '../../utilities/position-finders';
+
+import { MEMORY } from '../../enums/memory';
 
 import { Task } from '../task';
 
 export class FillStorage extends Task<StructureStorage> {
 
     protected findTargetId(creep: Creep): string {
-        const storage = findClosestStorage(creep.pos);
+        const roomName = creep.memory[MEMORY.ROOM];
+        const storage = Game.rooms[roomName].storage;
         return storage ? storage.id : '';
     }
 
@@ -17,7 +19,7 @@ export class FillStorage extends Task<StructureStorage> {
     }
 
     protected isTaskFinished(creep: Creep, target: StructureStorage): boolean {
-        return isEmpty(creep);
+        return isEmpty(creep) || !target;
     }
 
 }

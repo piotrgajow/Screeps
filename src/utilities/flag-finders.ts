@@ -1,3 +1,4 @@
+
 import { isMine, isUpgradeSite } from './flag-utilities';
 
 export function findMines(): string[] {

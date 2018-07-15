@@ -6,5 +6,4 @@ export function findMiners(): Creep[] {
 
 export function findUpgraderCreeps(): Creep[] {
     return _.filter(_.values(Game.creeps), isUpgrader);
-
 }

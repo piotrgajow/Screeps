@@ -43,12 +43,18 @@ export class CreepSpawning {
     }
 
     private static spawn(role: string): void {
-        const parts = COMMON.ROLES[role].getParts(Game.spawns[MAIN_SPAWN_NAME].room);
-        Game.spawns[MAIN_SPAWN_NAME].spawnCreep(
-            parts,
-            `${role}-${CreepSpawning.creepIndex()}`,
-            { memory: { role, task: '', debug: false, target: '' } },
-        );
+        const spawn = Game.spawns[MAIN_SPAWN_NAME];
+        const parts = COMMON.ROLES[role].getParts(spawn.room);
+        const memory = {
+            [MEMORY.DEBUG]: false,
+            [MEMORY.ROLE]: role,
+            [MEMORY.ROOM]: spawn.room.name,
+            [MEMORY.TARGET]: '',
+            [MEMORY.TASK]: '',
+        };
+        const name = `${role}-${CreepSpawning.creepIndex()}`;
+
+        spawn.spawnCreep(parts, name, { memory });
     }
 
     private static creepIndex(): number {

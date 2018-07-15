@@ -3,6 +3,8 @@ import { Builder } from './creeps/roles/builder';
 import { EnergyDistributor } from './creeps/roles/energy-distributor';
 import { Hauler } from './creeps/roles/hauler';
 import { Miner } from './creeps/roles/miner';
+import { RemoteHauler } from './creeps/roles/remote-hauler';
+import { RemoteMiner } from './creeps/roles/remote-miner';
 import { Upgrader } from './creeps/roles/upgrader';
 import { Worker } from './creeps/roles/worker';
 
@@ -15,8 +17,10 @@ import { FillStorage } from './creeps/tasks/fill-storage';
 import { FillTower } from './creeps/tasks/fill-tower';
 import { FillUpgrader } from './creeps/tasks/fill-upgrader';
 import { Mine } from './creeps/tasks/mine';
+import { MineRemote } from './creeps/tasks/mine-remote';
 import { NoOp } from './creeps/tasks/no-op';
 import { PickFromContainer } from './creeps/tasks/pick-from-container';
+import { PickFromRemoteMine } from './creeps/tasks/pick-from-remote-mine';
 import { PickUpEnergy } from './creeps/tasks/pick-up-energy';
 import { Repair } from './creeps/tasks/repair';
 import { Scavenge } from './creeps/tasks/scavenge';
@@ -32,6 +36,8 @@ class CommonData {
         'energy-distributor': EnergyDistributor.prototype,
         'hauler': Hauler.prototype,
         'miner': Miner.prototype,
+        'remote-hauler': RemoteHauler.prototype,
+        'remote-miner': RemoteMiner.prototype,
         'upgrader': Upgrader.prototype,
         'worker': Worker.prototype,
     };
@@ -45,8 +51,10 @@ class CommonData {
         'fill-tower': new FillTower(),
         'fill-upgrader': new FillUpgrader(),
         'mine': new Mine(),
+        'mine-remote': new MineRemote(),
         'no-op': new NoOp(),
         'pick-from-container': new PickFromContainer(),
+        'pick-from-remote-mine': new PickFromRemoteMine(),
         'pick-up-energy': new PickUpEnergy(),
         'repair': new Repair(),
         'scavenge': new Scavenge(),

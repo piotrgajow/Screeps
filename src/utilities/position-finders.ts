@@ -9,7 +9,6 @@ import {
     isNotEmptyStorage,
     isNotFullExtension,
     isNotFullTower,
-    isStorage,
 } from './structure-utilities';
 import { isNotEmpty } from './tombstone-utilities';
 
@@ -23,10 +22,6 @@ export function findClosestSource(position: RoomPosition): Source | null {
 
 export function findClosestNotFullExtension(position: RoomPosition): StructureExtension | null {
     return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isNotFullExtension }) as StructureExtension;
-}
-
-export function findClosestStorage(position: RoomPosition): StructureStorage | null {
-    return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isStorage }) as StructureStorage;
 }
 
 export function findClosestNotEmptyStorage(position: RoomPosition): StructureStorage | null {
@@ -79,4 +74,9 @@ export function findClosestNotOccupiedUpgradeSite(position: RoomPosition): Flag 
 
 export function findClosestTombstone(position: RoomPosition): Tombstone | null {
     return position.findClosestByPath(FIND_TOMBSTONES, { filter: isNotEmpty });
+}
+
+export function lookForConstructionSite(position: RoomPosition): ConstructionSite | null {
+    const constructionSites = position.lookFor(LOOK_CONSTRUCTION_SITES);
+    return constructionSites.length > 0 ? constructionSites[0] : null;
 }
