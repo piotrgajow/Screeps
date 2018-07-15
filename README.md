@@ -16,9 +16,9 @@ To upload the code onto Screeps account you should:
 
 Main code loop consists of executing 4 modules:
 
-- Defence system
+- Tower commanding
 
-  Detects enemy creeps in occupied room and commands towers to attack them.
+  Detects enemy creeps in occupied room and commands towers to attack them. If no enemies detected, repairs damaged structures
   
 - Creep commanding
 
