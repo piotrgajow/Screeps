@@ -46,11 +46,11 @@ export class CreepSpawning {
         const spawn = Game.spawns[MAIN_SPAWN_NAME];
         const parts = COMMON.ROLES[role].getParts(spawn.room);
         const memory = {
-            debug: false,
-            role,
-            room: spawn.room.name,
-            target: '',
-            task: '',
+            [MEMORY.DEBUG]: false,
+            [MEMORY.ROLE]: role,
+            [MEMORY.ROOM]: spawn.room.name,
+            [MEMORY.TARGET]: '',
+            [MEMORY.TASK]: '',
         };
         const name = `${role}-${CreepSpawning.creepIndex()}`;
 
