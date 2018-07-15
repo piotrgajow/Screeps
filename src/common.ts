@@ -3,6 +3,7 @@ import { Builder } from './creeps/roles/builder';
 import { EnergyDistributor } from './creeps/roles/energy-distributor';
 import { Hauler } from './creeps/roles/hauler';
 import { Miner } from './creeps/roles/miner';
+import { RemoteHauler } from './creeps/roles/remote-hauler';
 import { RemoteMiner } from './creeps/roles/remote-miner';
 import { Upgrader } from './creeps/roles/upgrader';
 import { Worker } from './creeps/roles/worker';
@@ -35,6 +36,7 @@ class CommonData {
         'energy-distributor': EnergyDistributor.prototype,
         'hauler': Hauler.prototype,
         'miner': Miner.prototype,
+        'remote-hauler': RemoteHauler.prototype,
         'remote-miner': RemoteMiner.prototype,
         'upgrader': Upgrader.prototype,
         'worker': Worker.prototype,
