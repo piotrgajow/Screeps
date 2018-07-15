@@ -12,7 +12,7 @@ export class RemoteMine extends Flag {
         return _.get(containerResult, 'structure') as StructureContainer;
     }
 
-    get hauler(): Creep {
+    get hauler(): Creep | undefined {
         return findCreep(isRemoteHauler, isTargeting(this.name));
     }
 
@@ -26,6 +26,6 @@ function isRemoteMine(flag: Flag): boolean {
     return flag.name.includes(REMOTE_MINE_PREFIX);
 }
 
-function isContainerStructure<T>(it: LookAtResult<T>): boolean {
-    return isStructure(it) && isContainer(it as Structure);
+function isContainerStructure(it: LookAtResult<LookConstant>): boolean {
+    return isStructure(it) && isContainer(it.structure as Structure);
 }

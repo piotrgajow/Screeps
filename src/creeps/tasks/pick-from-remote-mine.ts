@@ -10,7 +10,7 @@ export class PickFromRemoteMine extends Task<StructureContainer> {
     protected findTargetId(creep: Creep): string {
         const remoteMines = findRemoteMines();
         const targetMine = _.find(remoteMines, (it) => !it.hauler && it.container && isNotEmptyContainer(it.container));
-        return targetMine ? targetMine.container.id : '';
+        return targetMine ? targetMine.container!.id : '';
     }
 
     protected executeTask(creep: Creep, target: StructureContainer): any {
