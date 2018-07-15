@@ -1,12 +1,9 @@
-import { MEMORY } from '../../enums/memory';
-import { Logger } from '../../logging/logger';
-
 import { Task } from '../task';
 
 import { findRemoteMines, RemoteMine } from '../../flags/remote-mine';
 
 import { isNotFull } from '../../utilities/creep-utilities';
-import { lookForConstructionSite, lookForContainer } from '../../utilities/position-finders';
+import { lookForConstructionSite } from '../../utilities/position-finders';
 
 const LOW_HITS_THRESHOLD = 100000;
 
@@ -28,7 +25,7 @@ export class MineRemote extends Task<RemoteMine> {
                 const source = target.source;
                 creep.harvest(source);
             } else {
-                const container = lookForContainer(target.pos);
+                const container = target.container;
                 if (container) {
                     if (container.hits < LOW_HITS_THRESHOLD) {
                         creep.repair(container);

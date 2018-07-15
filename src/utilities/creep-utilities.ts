@@ -30,10 +30,6 @@ export function isMiner(creep: Creep): boolean {
     return creep.memory[MEMORY.ROLE] === 'miner';
 }
 
-export function isRemoteMiner(creep: Creep): boolean {
-    return creep.memory[MEMORY.ROLE] === 'remote-miner';
-}
-
 export function getResourceType(creep: Creep): ResourceConstant {
     const pairs = _.pairs(creep.carry);
     const pair = _.find(pairs, isResourceNotZero);

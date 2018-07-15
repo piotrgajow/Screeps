@@ -4,13 +4,11 @@ import { findMiners, findUpgraderCreeps } from './creep-finders';
 import { isLowOnEnergyUpgrader } from './creep-utilities';
 import { findMines, findUpgradeSites } from './flag-finders';
 import {
-    isContainer,
     isHighOnEnergyContainer,
     isNotEmptyContainer,
     isNotEmptyStorage,
     isNotFullExtension,
     isNotFullTower,
-    isStorage,
 } from './structure-utilities';
 import { isNotEmpty } from './tombstone-utilities';
 
@@ -24,10 +22,6 @@ export function findClosestSource(position: RoomPosition): Source | null {
 
 export function findClosestNotFullExtension(position: RoomPosition): StructureExtension | null {
     return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isNotFullExtension }) as StructureExtension;
-}
-
-export function findClosestStorage(position: RoomPosition): StructureStorage | null {
-    return position.findClosestByPath(FIND_MY_STRUCTURES, { filter: isStorage }) as StructureStorage;
 }
 
 export function findClosestNotEmptyStorage(position: RoomPosition): StructureStorage | null {
@@ -80,16 +74,6 @@ export function findClosestNotOccupiedUpgradeSite(position: RoomPosition): Flag 
 
 export function findClosestTombstone(position: RoomPosition): Tombstone | null {
     return position.findClosestByPath(FIND_TOMBSTONES, { filter: isNotEmpty });
-}
-
-export function hasContainer(position: RoomPosition): boolean {
-    const structures = position.lookFor(LOOK_STRUCTURES);
-    return _.any(structures, isContainer);
-}
-
-export function lookForContainer(position: RoomPosition): StructureContainer | undefined {
-    const structures = position.lookFor(LOOK_STRUCTURES);
-    return _.find(structures, isContainer) as StructureContainer;
 }
 
 export function lookForConstructionSite(position: RoomPosition): ConstructionSite | null {
