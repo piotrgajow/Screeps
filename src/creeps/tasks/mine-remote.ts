@@ -5,7 +5,9 @@ import { Task } from '../task';
 
 import { isNotFull } from '../../utilities/creep-utilities';
 import { findNotOccupiedRemoteMine } from '../../utilities/flag-finders';
-import { hasContainer, lookForConstructionSite } from '../../utilities/position-finders';
+import { lookForConstructionSite, lookForContainer } from '../../utilities/position-finders';
+
+const LOW_HITS_THRESHOLD = 100000;
 
 export class MineRemote extends Task<Flag> {
 
@@ -34,8 +36,13 @@ export class MineRemote extends Task<Flag> {
                 const source = Game.getObjectById(sourceId) as Source;
                 creep.harvest(source);
             } else {
-                if (hasContainer(target.pos)) {
-                    creep.drop(RESOURCE_ENERGY);
+                const container = lookForContainer(target.pos);
+                if (container) {
+                    if (container.hits < LOW_HITS_THRESHOLD) {
+                        creep.repair(container);
+                    } else {
+                        creep.drop(RESOURCE_ENERGY);
+                    }
                 } else {
                     const constructionSite = lookForConstructionSite(target.pos);
                     if (constructionSite) {
