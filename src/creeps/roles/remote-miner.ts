@@ -7,7 +7,7 @@ export class RemoteMiner extends CreepRole {
     }
 
     public getParts(room: Room): BodyPartConstant[] {
-        return [WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE];
+        return [WORK, WORK, WORK, CARRY, MOVE, MOVE];
     }
 
 }
