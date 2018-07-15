@@ -75,7 +75,19 @@ Requires mine flag (containing `mine` keyword) on a position adjacent to the sou
 
 Will look for empty position with upgrade flag and move to it. Then it will upgrade the controller. The role relies on Energy Distributor to be given energy.
 
-Requires upgrade flag (containing `upg` keyword) on a position in range of controller upgrading.
+Requires: upgrade flag (containing `upg` keyword) on a position in range of controller upgrading.
+
+### Remote Miner [450]
+
+Will occupy remote mine flag location, build a container and mine nearby source
+
+Requires flag with `remote-mine` prefix in range 1 of source
+
+### Remote Hauler [300]
+
+Will transfer energy from remote mine container to storage
+
+Requires: storage and container in remote mine location
 
 ## Creep Spawning
 
