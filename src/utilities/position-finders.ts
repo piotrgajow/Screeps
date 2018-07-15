@@ -87,6 +87,11 @@ export function hasContainer(position: RoomPosition): boolean {
     return _.any(structures, isContainer);
 }
 
+export function lookForContainer(position: RoomPosition): StructureContainer | undefined {
+    const structures = position.lookFor(LOOK_STRUCTURES);
+    return _.find(structures, isContainer) as StructureContainer;
+}
+
 export function lookForConstructionSite(position: RoomPosition): ConstructionSite | null {
     const constructionSites = position.lookFor(LOOK_CONSTRUCTION_SITES);
     return constructionSites.length > 0 ? constructionSites[0] : null;
