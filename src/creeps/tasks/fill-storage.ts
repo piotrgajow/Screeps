@@ -1,8 +1,8 @@
 import { getResourceType, isEmpty } from '../../utilities/creep-utilities';
-import { findClosestStorage } from '../../utilities/position-finders';
+
+import { MEMORY } from '../../enums/memory';
 
 import { Task } from '../task';
-import { MEMORY } from '../../enums/memory';
 
 export class FillStorage extends Task<StructureStorage> {
 

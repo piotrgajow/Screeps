@@ -1,5 +1,7 @@
 import { CreepRole } from '../creep-role';
 
+export const REMOTE_MINER = 'remote-miner';
+
 export class RemoteMiner extends CreepRole {
 
     protected findNewTask(): string {

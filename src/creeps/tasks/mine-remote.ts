@@ -3,37 +3,29 @@ import { Logger } from '../../logging/logger';
 
 import { Task } from '../task';
 
+import { findRemoteMines, RemoteMine } from '../../flags/remote-mine';
+
 import { isNotFull } from '../../utilities/creep-utilities';
-import { findNotOccupiedRemoteMine } from '../../utilities/flag-finders';
 import { lookForConstructionSite, lookForContainer } from '../../utilities/position-finders';
 
 const LOW_HITS_THRESHOLD = 100000;
 
-export class MineRemote extends Task<Flag> {
+export class MineRemote extends Task<RemoteMine> {
 
     protected findTargetId(creep: Creep): string {
-        const remoteMineFlagName = findNotOccupiedRemoteMine();
-        return remoteMineFlagName ? remoteMineFlagName : '';
+        const remoteMines = findRemoteMines();
+        const targetMine = _.find(remoteMines, (it) => !it.hasMiner);
+        return targetMine ? targetMine.name : '';
     }
 
-    protected getTarget(id: string): Flag {
-        return Game.flags[id];
+    protected getTarget(id: string): RemoteMine {
+        return new RemoteMine(Game.flags[id]);
     }
 
-    protected executeTask(creep: Creep, target: Flag): void {
+    protected executeTask(creep: Creep, target: RemoteMine): void {
         if (target.pos.isEqualTo(creep.pos)) {
             if (isNotFull(creep)) {
-                let sourceId = target.memory[MEMORY.SOURCE];
-                if (!sourceId) {
-                    const sourcesNearby = target.pos.findInRange(FIND_SOURCES, 1);
-                    if (sourcesNearby.length === 0) {
-                        Logger.error(creep.room.name, 'flag', target.name, 'has no source nearby');
-                    } else {
-                        sourceId = sourcesNearby[0].id;
-                        target.memory[MEMORY.SOURCE] = sourceId;
-                    }
-                }
-                const source = Game.getObjectById(sourceId) as Source;
+                const source = target.source;
                 creep.harvest(source);
             } else {
                 const container = lookForContainer(target.pos);
@@ -48,7 +40,7 @@ export class MineRemote extends Task<Flag> {
                     if (constructionSite) {
                         creep.build(constructionSite);
                     } else {
-                        target.room!.createConstructionSite(target.pos, STRUCTURE_CONTAINER);
+                        target.room.createConstructionSite(target.pos, STRUCTURE_CONTAINER);
                     }
                 }
             }
@@ -57,7 +49,7 @@ export class MineRemote extends Task<Flag> {
         }
     }
 
-    protected isTaskFinished(creep: Creep, target: Flag): boolean {
+    protected isTaskFinished(creep: Creep, target: RemoteMine): boolean {
         return !target;
     }
 
