@@ -61,5 +61,5 @@ export function findMines(): Mine[] {
 }
 
 function isMine(flag: Flag): boolean {
-    return flag.name.includes(MINE_PREFIX);
+    return flag.name.startsWith(MINE_PREFIX);
 }

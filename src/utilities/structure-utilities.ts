@@ -1,4 +1,4 @@
-import { isFilled } from './store-utilities';
+import { isFilled, isNotEmpty } from './store-utilities';
 
 type StructureWithEnergy = StructureSpawn | StructureTower | StructureExtension;
 type StructureWithStorage = StructureContainer | StructureStorage;
@@ -33,10 +33,6 @@ export function isHighOnEnergy(structure: StructureWithStorage): boolean {
     return structure.store.energy > HIGH_ENERGY_THRESHOLD;
 }
 
-export function isNotEmpty(structure: StructureWithStorage): boolean {
-    return structure.store.energy > 0;
-}
-
 export function isEmpty(structure: StructureWithStorage): boolean {
     return structure.store.energy === 0;
 }
@@ -68,9 +64,9 @@ export function isFilledContainer(structure: Structure): boolean {
 }
 
 export function isNotEmptyContainer(structure: Structure): boolean {
-    return isContainer(structure) && isNotEmpty(structure as StructureContainer);
+    return isContainer(structure) && isNotEmpty((structure as StructureContainer).store);
 }
 
 export function isNotEmptyStorage(structure: Structure): boolean {
-    return isStorage(structure) && isNotEmpty(structure as StructureStorage);
+    return isStorage(structure) && isNotEmpty((structure as StructureStorage).store);
 }

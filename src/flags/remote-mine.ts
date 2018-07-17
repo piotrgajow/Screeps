@@ -67,7 +67,7 @@ export function findRemoteMines(): RemoteMine[] {
 }
 
 function isRemoteMine(flag: Flag): boolean {
-    return flag.name.includes(REMOTE_MINE_PREFIX);
+    return flag.name.startsWith(REMOTE_MINE_PREFIX);
 }
 
 function isContainerStructure(it: LookAtResult<LookConstant>): boolean {
