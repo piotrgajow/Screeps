@@ -23,7 +23,7 @@ export class PickFromContainer extends Task<StructureContainer> {
     }
 
     protected isTaskFinished(creep: Creep, target: StructureContainer): boolean {
-        return isFull(creep) || !target && isEmpty(target);
+        return isFull(creep) || !target || isEmpty(target);
     }
 
 }
