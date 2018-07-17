@@ -1,3 +1,5 @@
+import { isFilled } from './store-utilities';
+
 type StructureWithEnergy = StructureSpawn | StructureTower | StructureExtension;
 type StructureWithStorage = StructureContainer | StructureStorage;
 
@@ -59,6 +61,10 @@ export function isNotFullExtension(structure: Structure): boolean {
 
 export function isHighOnEnergyContainer(structure: Structure): boolean {
     return isContainer(structure) && isHighOnEnergy(structure as StructureContainer);
+}
+
+export function isFilledContainer(structure: Structure): boolean {
+    return isContainer(structure) && isFilled((structure as StructureContainer).store);
 }
 
 export function isNotEmptyContainer(structure: Structure): boolean {
