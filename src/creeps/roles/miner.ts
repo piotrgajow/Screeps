@@ -1,6 +1,8 @@
 import { checkCombinationFit, CREEP_PART_PRICES } from '../creep-parts';
 import { CreepRole } from '../creep-role';
 
+export const MINER = 'miner';
+
 export class Miner extends CreepRole {
 
     protected findNewTask(): string {
