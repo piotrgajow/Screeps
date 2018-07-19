@@ -4,7 +4,7 @@ import { findMiners, findUpgraderCreeps } from './creep-finders';
 import { isLowOnEnergyUpgrader } from './creep-utilities';
 import { findMines, findUpgradeSites } from './flag-finders';
 import {
-    isHighOnEnergyContainer,
+    isFilledContainer,
     isNotEmptyContainer,
     isNotEmptyStorage,
     isNotFullExtension,
@@ -37,7 +37,7 @@ export function findClosestLowOnEnergyUpgrader(position: RoomPosition): Creep | 
 }
 
 export function findClosestHighOnEnergyConainer(position: RoomPosition): StructureContainer | null {
-    return position.findClosestByPath(FIND_STRUCTURES, { filter: isHighOnEnergyContainer }) as StructureContainer;
+    return position.findClosestByPath(FIND_STRUCTURES, { filter: isFilledContainer }) as StructureContainer;
 }
 
 export function findClosestNotEmptyContainer(position: RoomPosition): StructureContainer | null {

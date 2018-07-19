@@ -1,5 +1,6 @@
 import { isFull } from '../../utilities/creep-utilities';
 import { findClosestHighOnEnergyConainer, findClosestNotEmptyContainer } from '../../utilities/position-finders';
+import { getResourceType } from '../../utilities/store-utilities';
 import { isEmpty } from '../../utilities/structure-utilities';
 
 import { Task } from '../task';
@@ -17,7 +18,7 @@ export class PickFromContainer extends Task<StructureContainer> {
     }
 
     protected executeTask(creep: Creep, target: StructureContainer): any {
-        if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+        if (creep.withdraw(target, getResourceType(target.store)) === ERR_NOT_IN_RANGE) {
             creep.moveTo(target, { visualizePathStyle: {} });
         }
     }

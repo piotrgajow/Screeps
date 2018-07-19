@@ -1,3 +1,4 @@
+import { MINER } from '../creeps/roles/miner';
 import { REMOTE_HAULER } from '../creeps/roles/remote-hauler';
 import { REMOTE_MINER } from '../creeps/roles/remote-miner';
 
@@ -30,12 +31,17 @@ export function findCreeps(...filters: Array<(creep: Creep) => boolean>): Creep[
 
     return _.filter(allCreeps, creepFilter);
 }
+
 export function isRemoteHauler(creep: Creep): boolean {
     return creep && creep.memory[MEMORY.ROLE] === REMOTE_HAULER;
 }
 
 export function isRemoteMiner(creep: Creep): boolean {
     return creep && creep.memory[MEMORY.ROLE] === REMOTE_MINER;
+}
+
+export function isMiner(creep: Creep): boolean {
+    return creep && creep.memory[MEMORY.ROLE] === MINER;
 }
 
 export function isTargeting(target: string): (creep: Creep) => boolean {
